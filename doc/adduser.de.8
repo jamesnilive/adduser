@@ -1,0 +1,678 @@
+.\" Copyright: 1994 Ian A. Murdock <imurdock@debian.org>
+.\"            1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            1997-1999 Guy Maor
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de
+.\"            2005-2009 Jörg Hoh <joerg@joerghoh.de
+.\"            2006-2011 Stephen Gran <sgran@debian.org>
+.\"            2011 Justin B Rye <jbr@edlug.org.uk>
+.\"            2016 Afif Elghraoui <afif@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021-2022 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public License version
+.\" 2 or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH ADDUSER 8 "" "Debian GNU/Linux" 
+.SH BEZEICHNUNG
+adduser, addgroup \- Benutzer oder Gruppen im System hinzufügen oder
+verändern
+.SH ÜBERSICHT
+.SY adduser
+.OP \-\-add\-extra\-groups
+.OP \-\-allow\-all\-names
+.OP \-\-allow\-bad\-names
+.OP \-\-comment Kommentar
+.OP \-\-conf Datei
+.OP \-\-debug
+.OP \-\-disabled\-login
+.OP \-\-disabled\-password
+.OP \-\-encrypt\-home
+.OP \-\-firstgid Kennung
+.OP \-\-firstuid Kennung
+.OP \-\-gid Kennung
+.OP \-\-home Verzeichnis
+.OP \-\-ingroup Gruppe
+.OP \-\-lastgid Kennung
+.OP \-\-lastuid Kennung
+.OP \-\-no\-create\-home
+.OP \-\-shell Shell
+.OP \-\-quiet
+.OP \-\-uid Kennung
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBBenutzer\fP
+.YS
+.SY adduser
+\fB\-\-system\fP
+.OP \-\-comment Kommentar
+.OP \-\-conf Datei
+.OP \-\-debug
+.OP \-\-gid Kennung
+.OP \-\-group
+.OP \-\-home Verzeichnis
+.OP \-\-ingroup Gruppe
+.OP \-\-no\-create\-home
+.OP \-\-shell Shell
+.OP \-\-uid Kennung
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBBenutzer\fP
+.YS
+.SY adduser
+\fB\-\-group\fP
+.OP \-\-conf Datei
+.OP \-\-debug
+.OP \-\-firstgid Kennung
+.OP \-\-gid Kennung
+.OP \-\-lastgid Kennung
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgroup\fP
+.YS
+.SY addgroup
+.OP \-\-conf Datei
+.OP \-\-debug
+.OP \-\-firstgid Kennung
+.OP \-\-gid Kennung
+.OP \-\-lastgid Kennung
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgroup\fP
+.YS
+.SY addgroup
+\fB\-\-system\fP
+.OP \-\-gid Kennung
+.OP \-\-conf Datei
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgroup\fP
+.YS
+.SY adduser
+.OP \-\-conf Datei
+.OP \-\-debug
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBBenutzer\fP \fBGruppe\fP
+.YS
+.SY adduser
+\fB\-\-help\fP
+.YS
+.SY adduser
+\fB\-\-version\fP
+.YS
+.SH BESCHREIBUNG
+Die Befehle \fBadduser\fP und \fBaddgroup\fP fügen im System Benutzer und Gruppen
+unter Berücksichtigung der Befehlszeilen\-Optionen und der
+Konfigurationsinformationen in \fI/etc/adduser.conf\fP hinzu. Sie sind
+Debian\-spezifischere Oberflächen für die Programme \fBuseradd\fP(8),
+\fBgroupadd\fP(8) und \fBusermod\fP(8), die unabhängiger von Distributionen
+sind. \fBadduser\fP und \fBaddgroup\fP(8) wählen standardmäßig UID\- und GID\-Werte,
+die den Debian\-Richtlinien folgen, erstellen ein Home\-Verzeichnis mit
+Gerüstkonfiguration, führen ein benutzerdefiniertes Skript aus und haben
+einige weitere Funktionalitäten.
+.PP
+\fBadduser\fP und \fBaddgroup\fP sind als Schicht für Richtlinien gedacht. Sie
+erleichtern Paketbetreuern und lokalen Administratoren die Erstellung
+lokaler Systemkonten auf eine Art, wie Debian deren Erstellung erwartet. Sie
+übernehmen dabei die Last, sich an die möglicherweise ändernden
+Anforderungen der Debian\-Richtlinien anzupassen. Im Besonderen benötigt
+\fBadduser \-\-system\fP nur einen einzigen Aufruf in den Paketbetreuerskripten,
+keine zusätzlichen Wrapper, Fehlerunterdrückungen oder andere
+Hilfskonstrukte.
+.PP
+\fBadduser\fP respektiert die Unterscheidung zwischen \fIdynamisch zugewiesenen Systembenutzern und \-gruppen\fP und \fIdynamisch zugewiesenen Benutzerkonten\fP,
+die in den Debian\-Richtlinien, Kapitel 9.2.2 beschrieben ist.
+.PP
+Eine vollständige Liste und Beschreibungen aller Optionen finden Sie im
+Abschnitt OPTIONEN.
+.PP
+\fBadduser\fP und \fBaddgroup\fP können in einem von fünf Modi betrieben werden:
+.SS "Einen regulären (nicht System\-)Benutzer hinzufügen"
+Wird \fBadduser\fP ohne die Optionen \fB\-\-system\fP oder \fB\-\-group\fP und mit einem
+Argument, das keine Option ist, aufgerufen, richtet \fBadduser\fP einen
+regulären Benutzer ein. Dies ist ein \fIdynamisch zugewiesenes Benutzerkonto\fP
+im Sinne der Debian\-Richtlinien. Im Kontext von \fBadduser\fP wird dies
+typischerweise als \fINicht\-Systembenutzer\fP bezeichnet.
+.PP
+\fBadduser\fP wird die erste noch freie UID aus dem in der Konfigurationsdatei
+durch \fBFIRST_UID\fP und \fBLAST_UID\fP festgelegten Bereich auswählen. Der
+Bereich kann mit den Optionen \fB\-\-firstuid\fP und \fB\-\-lastuid\fP außer Kraft
+gesetzt werden. Schließlich kann die UID mit der Option \fB\-\-uid\fP vollständig
+manuell gesetzt werden.
+.PP
+Standardmäßig erhält jeder Benutzer eine entsprechende Gruppe mit dem
+gleichen Namen. Dies wird typischerweise \fIBenutzergruppen\fP genannt und
+erlaubt die leichte Verwaltung von gruppenbeschreibbaren Verzeichnissen,
+indem die entsprechenden Benutzer in die neue Gruppe abgelegt, das Bit
+set\-group\-ID im Verzeichnis gesetzt und sichergestellt wird, dass alle
+Benutzer über die Umask 002 verfügen.
+.PP
+Für eine Benutzergruppe wird \fBadduser\fP die erste noch freie GID aus dem in
+der Konfigurationsdatei durch \fBFIRST_GID\fP und \fBLAST_GID\fP festgelegten
+Bereich auswählen. Der Bereich kann mit den Optionen \fB\-\-firstgid\fP und
+\fB\-\-lastgid\fP außer Kraft gesetzt werden. Schließlich kann die GID mit der
+Option \fB\-\-gid\fP vollständig manuell gesetzt werden.
+.PP
+Die Wechselwirkung zwischen \fBUSERS_GID\fP, \fBUSERS_GROUP\fP und \fBUSERGROUPS\fP
+wird im Detail in \fBadduser.conf\fP(5) beschrieben.
+.PP
+Die Voreinstellung für die primäre Gruppe des neuen Benutzers kann auf der
+Befehlszeile auch mit \fB\-\-gid\fP und einer Gruppenkennung oder \fB\-\-ingroup\fP
+und einem Gruppenamen außer Kraft gesetzt werden. Auch können Benutzer zu
+ergänzenden Gruppen hinzugefügt werden, die als \fBEXTRA_GROUPS\fP in der
+Konfigurationsdatei entweder durch Setzen von \fBADD_EXTRA_GROUPS\fP auf 1 oder
+durch Angabe von \fB\-\-add\-extra\-groups\fP auf der Befehlszeile angegeben
+wurden.
+.PP
+\fBadduser\fP kopiert Dateien aus \fI/etc/skel\fP in das Home\-Verzeichnis und
+bittet um Eingaben für das Kommentarfeld und ein Passwort, falls sich diese
+Funktionen nicht aufgrund von Eingaben auf der Befehlszeile erübrigen.
+.PP
+UID, Kommentare, Home\-Verzeichnis und die Shell können mit den Optionen
+\fBUID_POOL\fP und \fBGID_POOL\fP vorabbestimmt sein, siehe \fBadduser.conf(5)\fP.
+
+To set up an encrypted home directory for the new user, add the
+\fB\-\-encrypt\-home\fP option.  For more information, refer to the \-b option of
+\fBecryptfs\-setup\-private(1).\fP
+
+.SS "Einen System\-Benutzer hinzufügen"
+Wird \fBadduser\fP mit einem Argument, das keine Option ist, und der Option
+\fB\-\-system\fP aufgerufen, dann wird \fBadduser\fP einen \fIdynamisch zugewiesenen Systembenutzer\fP, im Kontext des Pakets \fBadduser\fP oft als \fISystembenutzer\fP
+abgekürzt, hinzufügen.
+.PP
+\fBadduser\fP wird die erste noch freie UID aus dem in der Konfigurationsdatei
+durch \fBFIRST_SYSTEM_UID\fP und \fBLAST_SYSTEM_UID\fP festgelegten Bereich
+auswählen. Dies kann mit der Option \fB\-\-uid\fP außer Kraft gesetzt werden.
+.PP
+Standardmäßig wird Systembenutzern die Gruppe \fBnogroup\fP als primäre Gruppe
+zugeordnet. Um eine bereits bestehende Gruppe als primäre Gruppe zuzuordnen,
+nutzen Sie die Optionen \fB\-\-gid\fP oder \fB\-\-ingroup\fP. Falls die Option
+\fB\-\-group\fP angegeben ist und eine identisch benannte Gruppe nicht bereits
+existiert, dann wird sie mit der gleichen Kennung erstellt.
+.PP
+Falls kein Home\-Verzeichnis festgelegt ist, ist das
+Standard\-Home\-Verzeichnis für einen neuen Systembenutzer
+\fI\%/nonexistent\fP. Dieses Verzeichnis sollte niemals auf irgendeinem
+Debian\-System existieren und \fBadduser\fP sollte es niemals automatisch
+erstellen.
+.PP
+Falls ein Home\-Verzeichnis mit der Option \fB\-\-home\fP festgelegt ist und das
+Verzeichnis noch nicht existiert (beispielsweise, weil das Paket Dateien in
+diesem Verzeichnis ausliefert), setzt \fBadduser\fP den Eigentümer ohne
+Rückmeldung nicht auf den neu erstellten Benutzer. Das Setzen des
+Eigentümers könnte eine Entscheidung des lokalen Administrators außer Kraft
+setzen und das Melden der Tatsache würde das Schweigen von \fBadduser\fP
+während der Paketinstallation brechen. Falls Sie \fBadduser \-\-home\fP in Ihren
+Paketverwaltungsskripten verwenden, könnte ein explizites rekursives
+\fBchown\fP(1) für das Home\-Verzeichnis nach dem Aufruf von \fBadduser\fP sinnvoll
+sein.
+.PP
+Wird nicht explizit eine Shell mit der Option \fB\-\-shell\fP gesetzt, dann wird
+diese für den neuen Systembenutzer auf \fI/usr/sbin/nologin\fP
+gesetzt. \fBadduser \-\-system\fP setzt kein Passwort für das neue Konto. Die
+Gerüstkonfigurationsdateien werden nicht kopiert.
+.PP
+Andere Optionen verhalten sich wie bei der Erstellung regulärer
+Benutzer. Die von \fBUID_POOL\fP und \fBGID_POOL\fP referenzierten Dateien werden
+ebenfalls berücksichtigt.
+
+.SS "Eine Gruppe hinzufügen"
+Wird \fBadduser\fP mit der Option \fB\-\-group\fP und ohne die Option \fB\-\-system\fP
+aufgerufen oder wird \fBaddgroup\fP aufgerufen, wird eine Benutzergruppe
+hinzugefügt.
+.PP
+Eine \fIdynamisch zugewiesene Systemgruppe\fP wird oft im Kontext des Pakets
+\fBadduser\fP als \fISystemgruppe\fP abgekürzt und wird erstellt, falls \fBadduser \-\-group\fP oder \fBaddgroup\fP mit der Option \fB\-\-system\fP aufgerufen werden.
+.PP
+Es wird eine GID aus dem zugehörigen, in der Konfigurationsdatei für GIDs
+festgelegten Bereich (\fBFIRST_GID\fP, \fBLAST_GID\fP, \fBFIRST_SYSTEM_GID\fP,
+\fBLAST_SYSTEM_GID\fP) gewählt. Sie können diesen Mechanismus außer Kraft
+setzen, indem Sie die GID mit der Option \fB\-\-gid\fP festlegen.
+.PP
+Für Nicht\-Systemgruppen kann der in der Konfigurationsdatei festgelegte
+Bereich mit den Optionen \fB\-\-firstgid\fP und \fB\-\-lastgid\fP außer Kraft gesetzt
+werden.
+.PP
+Die Gruppe wird ohne Mitglieder erzeugt.
+
+.SS "Einen bestehenden Benutzer zu einer bestehenden Gruppe hinzufügen"
+Wird \fBadduser\fP mit zwei Argumenten, die keine Optionen sind, aufgerufen,
+wird ein bestehender Benutzer zu einer bestehenden Gruppe hinzugefügt.
+
+.SH OPTIONEN
+Verschiedene Modi von \fBadduser\fP erlauben verschiedene Optionen. Falls keine
+gültigen Modi für eine Option aufgeführt sind, wird sie in allen Modi
+akzeptiert.
+.PP
+Aus historischen Gründen können für bestimmte Aktionen Kurzversionen der
+Optionen existieren. Sie werden weiterhin unterstützt, aber aus der
+Dokumentation entfernt. Benutzern wird empfohlen, auf die lange Version der
+Optionen umzusteigen.
+.TP 
+\fB\-\-add\-extra\-groups\fP
+Fügt einen neue Benutzer zu den Gruppen hinzu, die in der Einstellung
+\fBEXTRA_GROUPS\fP in der Konfigurationsdatei definiert sind. Die alte
+Schreibweise \fB\-\-add_extra_groups\fP ist veraltet und wird nur noch in
+Debian\-Bookworm unterstützt. Gültige Modi: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-allow\-all\-names\fP
+Erlaubt jeden Benutzer\- und Gruppennamen, der vom zugrundeliegenden
+\fBuseradd\fP(8) unterstützt wird. Siehe GÜLTIGE NAMEN weiter unten. Gültige
+Modi: \fBadduser\fP, \fBadduser \-\-system\fP, \fBaddgroup\fP, \fBaddgroup \-\-system\fP.
+.TP 
+\fB\-\-allow\-bad\-names\fP
+Deaktiviert die Namensprüfung \fBNAME_REGEX\fP und \fBSYS_NAME_REGEX\fP. Nur die
+schwächere Gültigkeitsprüfung von Namen wird angewandt. Siehe GÜLTIGE NAMEN
+weiter unten.Gültige Modi: \fBadduser\fP, \fBadduser \-\-system\fP, \fBaddgroup\fP,
+\fBaddgroup \-\-system\fP.
+.TP 
+\fB\-\-comment\fP\fI Kommentar\fP
+Setzt das Kommentarfeld für den neu erstellten Eintrag. Die Abfrage dieser
+Information durch \fBadduser\fP unterbleibt, wenn diese Option verwendet
+wird. Das Feld ist auch unter dem Namen GECOS bekannt und enthält
+Informationen, die vom Befehl \fBfinger\fP(1) verwandt werden. Dies war früher
+die Option \fB\-\-gecos\fP; diese ist veraltet und wird nach Debian Bookworm
+entfernt. Gültige Modi: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-conf\fP\fI Datei\fP
+\fIDatei\fP anstelle von \fI/etc/adduser.conf\fP benutzen. Es können mehrere
+Optionen \fB\-\-conf\fP angegeben werden.
+.TP 
+\fB\-\-debug\fP
+Synonym zu \fB\-\-stdoutmsglevel=debug\fP. Veraltet.
+.TP 
+\fB\-\-disabled\-login\fP
+.TQ
+\fB\-\-disabled\-password\fP
+Ruft \fBpasswd\fP(1) nicht zum Setzen eines Passworts auf. Allerdings sind in
+den meisten Fällen Anmeldungen weiterhin möglich (beispielsweise über
+SSH\-Schlüssel oder PAM). Die Gründe hierfür liegen außerhalb der
+Verantwortung von \fBadduser\fP. \fB\-\-disabled\-login\fP wird zusätzlich die Shell
+auf \fI/usr/sbin/nologin\fP setzen. Gültige Modi: \fBadduser\fP.
+.TP 
+\fB\-\-firstuid\fP\fI Kennung\fP
+.TQ
+\fB\-\-lastuid\fP\fI Kennung\fP
+.TQ
+\fB\-\-firstgid\fP\fI Kennung\fP
+.TQ
+\fB\-\-lastgid\fP\fI Kennung\fP
+Setzt die erste UID / letzte UID / erste GID / letzte GID für den Bereich,
+aus dem die Benutzerkennung gewählt wird (\fBFIRST_UID\fP, \fBLAST_UID\fP,
+\fBFIRST_GID\fP und \fBLAST_GID\fP, \fBFIRST_SYSTEM_UID\fP, \fBLAST_SYSTEM_UID\fP,
+\fBFIRST_SYSTEM_GID\fP und \fBLAST_SYSTEM_GID\fP in der Konfigurationsdatei) außer
+Kraft. Falls eine Gruppe als Benutzergruppe erstellt wird, werden
+\fB\-\-firstgid\fP und \fB\-\-lastgid\fP ignoriert. Die Gruppe erhält die gleiche
+Kennung wie der Benutzer. Gültige Modi: \fBadduser\fP, \fBadduser \-\-system\fP, für
+\fB\-\-firstgid\fP und \fB\-\-lastgid\fP auch \fBaddgroup\fP.
+.TP 
+\fB\-\-force\-badname\fP
+.TQ
+\fB\-\-allow\-badname\fP
+Dies sind veraltete Formen für \fB\-\-allow\-bad\-names\fP. Sie werden während des
+Veröffentlichungszyklus der Debian\-Veröffentlichung 13 entfernt.
+.TP 
+\fB\-\-extrausers\fP
+Uses extra users as the database.
+.TP 
+\fB\-\-gid\fP\fI GID \fP
+Bei der Erstellung einer Gruppe setzt diese Option die Gruppenkennungsnummer
+der neuen Gruppe auf \fIGID\fP. Bei der Erstellung eines Benutzers setzt diese
+Option die primäre Gruppenkennungsnummer des neuen Benutzers auf
+\fIGID\fP. Gültige Modi: \fBadduser\fP, \fBadduser \-\-system\fP, \fBaddgroup\fP,
+\fBaddgroup \-\-system\fP.
+.TP 
+\fB\-\-group\fP
+Die Verwendung dieser Option in \fBadduser \-\-system\fP zeigt an, dass der neue
+Benutzer eine identisch benannte Gruppe als primäre Gruppe erhalten
+soll. Falls diese identisch benannte Gruppe noch nicht existiert, wird sie
+erstellt. Wird sie nicht zusammen mit \fB\-\-system\fP verwendet, wird eine
+Gruppe mit dem angegebenen Namen erstellt. Letzteres ist das
+Standardverhalten, wenn das Programm als \fBaddgroup\fP aufgerufen
+wird. Gültige Modi sind \fBadduser \-\-system\fP, \fBaddgroup\fP, \fBaddgroup \-\-system\fP.
+.TP 
+\fB\-\-help\fP
+Kurzanleitung anzeigen
+.TP 
+\fB\-\-home\fP\fI Verzeichnis\fP
+Verwendet \fIVerzeichnis\fP als Home\-Verzeichnis des Benutzers anstatt der in
+der Konfigurationsdatei festgelegten Vorgabe (oder \fI/nonexistent\fP, falls
+\fBadduser \-\-system\fP verwandt wird). Existiert das Verzeichnis nicht, wird es
+erzeugt. Gültige Modi: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-ingroup\fP\fI GRUPPE\fP
+Bei der Erstellung eines Benutzers setzt diese Option die primäre
+Gruppenkennung des Benutzers auf die Gruppenkennung der benannten
+Gruppe. Anders als bei der Option \fB\-\-gid\fP wird die Gruppe hier über den
+Namen anstelle der numerischen Kennungsnummer angegeben. Die Gruppe muss
+bereits existieren. Gültige Modi: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-lastuid\fP\fI Kennung\fP
+.TQ
+\fB\-\-lastgid\fP\fI Kennung\fP
+Setzt die letzte UID / GID außer Kraft. Siehe \fB\-\-firstuid\fP.
+.TP 
+\fB\-\-no\-create\-home\fP
+Erstellt kein Home\-Verzeichnis für den neuen Benutzer. Beachten Sie, dass
+der Pfadname für das Home\-Verzeichnis des neuen Benutzers weiterhin in das
+entsprechende Feld in der Datei \fI\%/etc/passwd\fP eingetragen wird. Die
+Verwendung dieser Option impliziert nicht, dass das Feld leer sein
+soll. Stattdessen zeigt sie \fB\%adduser\fP an, dass ein anderer Mechanismus
+für die Initialisierung des Home\-Verzeichnisses des neuen Benutzers
+verantwortlich ist. Gültige Modi: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-quiet\fP
+Synonym zu \fB\-\-stdoutmsglevel=warn\fP. Veraltet.
+.TP 
+\fB\-\-shell\fP\fI Shell\fP
+Verwendet \fIShell\fP als Anmelde\-Shell des Benutzers anstatt der in der
+Konfigurationsdatei festgelegten Vorgabe (oder \fI/usr/sbin/nologin\fP, falls
+\fBadduser \-\-system\fP verwandt wird). Gültige Modi: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-system\fP
+Normalerweise erstellt \fBadduser\fP \fIdynamisch zugewiesene Benutzerkonten und \-gruppen\fP, wie in den Debian\-Richtlinien, Kapitel 9.2.2 definiert. Mit
+dieser Option erstellt \fBadduser\fP \fIdynamisch zugewiesene Systembenutzer und \-gruppen\fP und ändert seinen Modus entsprechend. Gültige Modi: \fBadduser\fP,
+\fBaddgroup\fP.
+.TP 
+\fB\-\-uid\fP\fI Kennung\fP
+Erzwingt, dass die Kennung des neuen Benutzers auf die angegebene Zahl
+gesetzt wird. \fBAdduser\fP wird fehlschlagen, wenn die Benutzerkennung bereits
+vergeben ist. Gültige Modi: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-verbose\fP
+Synonym zu \fB\-\-stdoutmsglevel=info\fP. Veraltet.
+.TP 
+\fB\-\-stdoutmsglevel\fP\fI Prio\fP
+.TQ
+\fB\-\-stderrmsglevel\fP\fI Prio\fP
+.TQ
+\fB\-\-logmsglevel\fP\fI Prio\fP
+Minimale Priorität für Meldungen, die im Syslog/Journal bzw. auf der Konsole
+protokolliert werden. Werte sind \fItrace\fP, \fIdebug\fP, \fIinfo\fP, \fIwarn\fP,
+\fIerr\fP und \fIfatal\fP. Meldungen mit der hier gesetzten oder einer höheren
+Priorität werden auf das entsprechende Medium protokolliert. Meldungen, die
+auf der Standardfehlerausgabe ausgegeben werden, werden nicht auf der
+Standardausgabe wiederholt. Dies ermöglicht es dem lokalen Administrator,
+die Gesprächigkeit von \fBadduser\fP auf der Konsole und im Protokoll
+voneinander unabhängig zu steuern sowie möglicherweise verwirrende
+Information bei sich selbst zu behalten, und dennoch hilfreiche
+Informationen in dem Protokoll zu hinterlassen. stdoutmsglevel,
+stderrmsglevel und logmsglevel sind standardmäßig warn, warn bzw. info.
+.TP 
+\fB\-v\fP , \fB\-\-version\fP
+Anzeige der Version und von Copyright\-Informationen.
+
+.SH "GÜLTIGE NAMEN"
+Historischerweise erzwangen \fBadduser\fP(8) und \fBaddgroup\fP(8) Konformität zu
+IEEE Std 1.003,1\-2001. Damit sind nur die folgenden Zeichen in Gruppen\- und
+Benutzernamen erlaubt: Buchstaben, Ziffern, Unterstriche, Punkte,
+Klammeraffen (@) und Bindestriche. Der Name darf nicht mit einem Bindestrich
+oder @ beginnen. Das »$«\-Zeichen wird am Ende von Benutzernamen erlaubt, um
+typische Samba\-Maschinenkonten zu erlauben.
+.PP
+Die Standardeinstellungen für \fBNAME_REGEX\fP und \fBSYS_NAME_REGEX\fP erlauben,
+dass Benutzernamen Buchstaben und Ziffern enthalten, sowie den Gedanken\- (\-)
+und Unterstrich (_). Der Name muss mit einem Buchstaben (oder einem
+Unterstrich für Systembenutzer) beginnen.
+.PP
+Die über die Option \fB\-\-allow\-all\-names\fP verfügbare, am wenigsten
+beschränkende Richtlinie macht einfach die gleichen Prüfungen wie
+\fBuseradd\fP(8). Bitte beachten Sie, dass die Prüfungen von \fBuseradd\fP in
+Debian 13 deutlich restriktiver geworden sind.
+.PP
+Durch Ändern des Standardverhaltens können verwirrende oder irreführende
+Namen erstellt werden; seien Sie vorsichtig.
+
+.SH PROTOKOLLIERUNG
+
+\fBAdduser\fP verwendet umfangreiche und konfigurierbare Protokollierung, um
+seine Ausführlichkeit an die Bedürfnisse des Systemadministrators
+anzupassen.
+
+Jede Meldung, die \fBadduser\fP ausgibt, hat von den Autoren einen
+Prioritätswert zugewiesen bekommen. Diese Priorität kann zur Laufzeit nicht
+geändert werden. Verfügbare Prioritätswerte sind \fBcrit\fP, \fBerror\fP,
+\fBwarning\fP, \fBinfo\fP, \fBdebug\fP und \fBtrace\fP.
+
+Falls Sie eine Meldung mit einer falschen Priorität finden, reichen Sie
+bitte (auf Englisch) einen Fehlerbericht ein.
+
+Jedes Mal, wenn eine Meldung erzeugt wird, entscheidet der Code, ob die
+Meldung auf der Standardausgabe, der Standardfehlerausgabe oder dem Syslog
+ausgegeben werden soll. Dies wird hauptsächlich und unabhängig voneinander
+durch die Konfigurationseinstellungen \fBSTDOUTMSGLEVEL\fP, \fBSTDERRMSGLEVEL\fP
+und \fBLOGMSGLEVEL\fP gesteuert. Zu Testzwecken können diese Einstellungen auf
+der Befehlszeile außer Kraft gesetzt werden.
+
+Nur Meldungen mit einer Priorität höher oder gleich der entsprechenden
+Meldungsstufe werden in das entsprechende Ausgabemedium protokolliert. Eine
+Meldung, die auf die Standardfehlerausgabe geschrieben wurde, wird nicht ein
+zweites Mal auf die Standardausgabe geschrieben.
+
+.SH RÜCKGABEWERTE
+
+.TP 
+\fB0\fP
+Erfolg: Der angegebene Benutzer oder die angegebene Gruppe existiert. Das
+kann zwei Gründe haben: Der Benutzer oder die Gruppe wurde von diesem Aufruf
+von \fBadduser\fP erzeugt oder der angegebene Benutzer oder die angegebene
+Gruppe war schon vor dem Aufruf von \fBadduser\fP im System eingerichtet. Wird
+\fBadduser \-\-system\fP für einen bereits bestehenden Benutzer aufgerufen, der
+über die angeforderten oder kompatible Attribute verfügt, dann wird es auch
+0 zurückliefern.
+.TP 
+\fB11\fP
+Das Objekt, das \fBadduser\fP erstellen soll, existiert bereits.
+.TP 
+\fB12\fP
+Das Objekt, auf dem \fBadduser\fP oder \fBdeluser\fP(8) agieren soll, existiert
+nicht.
+.TP 
+\fB13\fP
+Das Objekt, auf dem \fBadduser\fP oder \fBdeluser\fP(8) agieren soll, verfügt
+nicht über die Eigenschaften, die für den Abschluss der Aktion notwendig
+sind: Ein Benutzer (eine Gruppe), der als ein Systembenutzer (eine
+Systemgruppe) erstellt werden sollte, existiert bereits und ist kein
+Systembenutzer (keine Systemgruppe) oder ein Benutzer (eine Gruppe), die mit
+einer bestimmten UID (GID) erstellt werden sollte, existiert breits und hat
+eine andere UID (GID), oder ein Systembenutzer (eine Systemgruppe), die
+gelöscht werden sollte, existiert, aber nicht als Systembenutzer
+(Systemgruppe).
+.TP 
+\fB21\fP
+Die UID (GID), die für einen neuen Benutzer (eine neue Gruppe) explizit
+erbeten wurde, wird bereits verwandt.
+.TP 
+\fB22\fP
+Es gibt in dem angeforderten Bereich keine verfügbare UID (GID).
+.TP 
+\fB23\fP
+Es gibt keine Gruppe mit der angeforderten GID für die primäre Gruppe für
+einen neuen Benutzer.
+.TP 
+\fB31\fP
+Der gewählte Name für einen neuen Benutzer oder eine neue Gruppe folgt nicht
+den ausgewählten Namensregeln.
+.TP 
+\fB32\fP
+Das Home\-Verzeichnis eines neuen Benutzers muss ein absoluter Pfad sein.
+.TP 
+\fB33\fP
+\fBuseradd\fP(8) lieferte den Exit\-Code 19 »Ungültiger Benutzer\- oder
+Gruppenname« zurück. Das bedeutet, dass der ausgewählte Benutzer\- oder
+Gruppenname nicht in die Beschränkungen von \fBuseradd\fP(8) passt und
+\fBadduser\fP(8) den Benutzer nicht erstellen konnte.
+.TP 
+\fB41\fP
+Die zum Löschen angeforderte Gruppe ist nicht leer.
+.TP 
+\fB42\fP
+Der Benutzer, der aus einer Gruppe entfernt werden soll, ist überhaupt kein
+Mitglied darin.
+.TP 
+\fB43\fP
+Es ist nicht möglich, einen Benutzer aus seiner primären Gruppe zu entfernen
+oder es wurde keine primäre Gruppe für einen Benutzer mittels irgendeiner
+Methode ausgewählt.
+.TP 
+\fB51\fP
+Falsche Anzahl oder Reihenfolge der Befehlszeilenparameter erkannt.
+.TP 
+\fB52\fP
+In der Konfigurationsdatei wurden inkompatible Optionen gesetzt.
+.TP 
+\fB53\fP
+Gegenseitige inkompatible Befehlsoptionen erkannt.
+.TP 
+\fB54\fP
+\fBadduser\fP und \fBdeluser\fP(8) wurden als ein von root verschiedener Benutzer
+aufgerufen und können daher nicht funktionieren.
+.TP 
+\fB55\fP
+\fBdeluser\fP wird die Löschung des Kontos von \fIroot\fP ablehnen.
+.TP 
+\fB56\fP
+Es wurde eine Funktion angefordert, für die weitere Pakete installiert sein
+müssen. Siehe die Recommends: und Suggests: des Pakets »adduser«.
+.TP 
+\fB61\fP
+\fBAdduser\fP wurde aus irgendeinem Grund abgebrochen und versuchte, die
+Änderungen zurückzunehmen, die während der Ausführung erfolgt sind.
+.TP 
+\fB62\fP
+Interner Fehler von \fBadduser\fP. Dies sollte nicht passieren. Bitte versuchen
+Sie, das Problem zu reproduzieren und reichen Sie (auf Englisch) einen
+Fehlerbericht ein.
+.TP 
+\fB71\fP
+Fehler beim Erstellen und Handhaben der Sperre.
+.TP 
+\fB72\fP
+Fehler beim Zugriff auf die Konfigurationsdatei(en).
+.TP 
+\fB73\fP
+Fehler beim Zugriff auf eine Vorratsdatei.
+.TP 
+\fB74\fP
+Fehler beim Lesen einer Vorratsdatei, Syntaxfehler in der Datei.
+.TP 
+\fB75\fP
+Fehler beim Zugriff auf Hilfsdateien.
+.TP 
+\fB81\fP
+Ein Programm, das von \fBadduser\fP oder \fBdeluser\fP(8) benötigt wird, kann
+nicht gefunden werden. Prüfen Sie Ihre Installation und die Abhängigkeiten.
+.TP 
+\fB82\fP
+Die Ausführung eines externen Befehls lieferte einen unerwarteten Fehler.
+.TP 
+\fB83\fP
+Ein externer Befehl wurde mit einem Signal beendet.
+.TP 
+\fB84\fP
+Ein Systemaufruf beendete sich mit einem unerwarteten Fehler.
+.PP
+Oder es war einer von vielen anderen noch undokumentierten Gründen, die dann
+auf der Konsole ausgegeben werden. Sie können dann überlegen, ob Sie die
+Protokollierstufe erhöhen, damit \fBadduser\fP mehr Informationen ausgibt.
+
+.SH SICHERHEIT
+\fBadduser\fP benötigt Systemadministratorberechtigungen. Es bietet über die
+Befehlszeilenoption \fB\-\-conf\fP die Möglichkeit, verschiedene
+Konfigurationsdateien zu verwenden. Verwenden Sie nicht \fBsudo\fP(8) oder
+ähnliche Befehle, um Teilprivilegien an \fBadduser\fP mit beschränkten
+Befehlszeilenparametern zu geben. Dies kann leicht umgangen werden und
+könnte Benutzern erlauben, beliebige Konten zu erstellen. Falls Sie dies
+erreichen wollen, entwickeln Sie Ihr eigenes Skript, das \fBadduser\fP kapselt,
+und vergeben Sie Privilegien, um dieses Skript aufzurufen.
+
+.SH DATEIEN
+.TP 
+\fI/etc/adduser.conf\fP
+Standard\-Konfigurationsdatei für \fBadduser\fP(8) und \fBaddgroup\fP(8)
+.TP 
+\fI/usr/local/sbin/adduser.local\fP
+Optionale benutzerspezifische Erweiterungen, siehe \fBadduser.local\fP(8)
+.
+
+.SH ANMERKUNGEN
+Unglücklicherweise wird der Begriff \fISystemkonto\fP unter Debian in zwei
+Bedeutungen verwandt. In beiden Bedeutungen ist es ein Konto für das
+tatsächliche Debian\-System, das sich von einem \fIAnwendungskonto\fP
+unterscheidet, das in der Benutzerdatenbank einer beliebigen, unter Debian
+betriebenen Anwendung vorhanden ist. Ein \fISystemkonto\fP in dieser Definition
+verfügt über die Möglichkeit, sich am tatsächlichen System anzumelden, hat
+eine UID, kann Mitglied in Systemgruppen sein, kann Dateien und Prozesse
+besitzen. Im Gegensatz dazu unterscheiden die Debian\-Richtlinien in Kapitel
+9.2.2 zwischen \fIdynamisch zugewiesenen Systembenutzern und \-gruppen\fP und
+\fIdynamisch zugewiesenen Benutzerkonten\fP. Beides sind Sonderfälle eines
+\fISystemkontos\fP. Die beiden Begriffswelten dürfen nicht durcheinander
+gebracht werden. Da \fBadduser\fP und \fBdeluser\fP(8) niemals \fIAnwendungskonten\fP
+adressieren und sich alles in diesem Paket um \fISystemkonten\fP dreht, ist die
+Verwendung des Ausdrucks \fIBenutzerkonto\fP und \fISystemkonto\fP in dem Kontext
+dieses Paketes tatsächlich eindeutig. Zur Klarheit verwendet dieses Dokument
+die Definition \fIlokales Systemkonto oder lokale Systemgruppe\fP, falls die
+Unterscheidung zu \fIAnwendungskonten\fP oder Konten, die durch
+Verzeichnisdienste verwaltet werden, benötigt wird.
+.PP
+Früher, seit den 1990er Jahren, hatte \fBadduser\fP die Vision, die universelle
+Oberfläche zum Erstellen und Entfernen normaler und Systemkonten für die
+verschiedenen Verzeichnisdienste zu sein. Diese Vision wurde 2022
+aufgegeben. Der Grund hierfür ist unter anderem, dass in der Praxis ein
+kleines Serversystem sowieso keinen Schreibzugriff auf einen firmenweiten
+Verzeichnisdienst hat und dass lokal installierte Pakete schwierig mit
+zentral gesteuerten Systemkonten zu verwalten sind, dass firmenweite
+Verzeichnisdienste über zentral gesteuerte Systemkonten verfügen, dass
+firmenweite Verzeichnisdienste sowieso ihre eigene Verwaltungsprozesse haben
+und dass die Personalstärke des \fBadduser\fP\-Teams wahrscheinlich niemals so
+groß sein wird, um die Unterstützung für die Vielzahl an
+Verzeichnisdiensten, die das benötigen, zu schreiben und zu betreuen.
+.PP
+\fBadduser\fP beschränkt sich darauf, eine Richtlinienoberfläche für die
+Verwaltung lokaler Systemkonten zu sein. Dabei werden die Werkzeuge des
+Pakets \fBpasswd\fP für die eigentliche Arbeit verwandt.
+
+.SH FEHLER
+Inkonsistente Verwendung von Begriffen rund um den Ausdruck \fISystemkonto\fP
+in der Dokumentation und den Programmen ist ein Fehler. Bitte berichten Sie
+dies, um uns zu ermöglichen, die Dokumentation zu verbessern.
+.PP
+\fBadduser\fP berücksichtigt besonders die direkte Verwendbarkeit in
+Debian\-Betreuerskripten ohne fallweise Wrapper, Fehlerunterdrückung und
+anderem zusätzlichem Rüstwerk. Das einzige, was im Paketbetreuerskript
+programmiert werden sollte, ist eine Prüfung auf das Vorhandensein des
+Programms im Skript postrm. Die Betreuer von \fBadduser\fP betrachten die
+Notwendigkeit für zusätzliches Rüstwerk als einen Fehler und ermutigen ihre
+Mit\-Debian\-Paketbetreuer, in diesem Fall Fehlerberichte gegen das Paket
+\fBadduser\fP einzureichen.
+
+.SH "SIEHE AUCH"
+\fBadduser.conf\fP(5), \fBdeluser\fP(8), \fBgroupadd\fP(8), \fBuseradd\fP(8),
+\fBusermod\fP(8), \fB/usr/share/doc/base\-passwd/users\-and\-groups.html\fP auf jedem
+Debian\-System, Debian\-Richtlinien 9.2.2, RFC8264 »PRECIS Framework:
+Preparation, Enforcement, and Comparison of Internationalized Strings in
+Application Protocols«, RFC8265 »PRECIS Representing Usernames and
+Passwords«, https://wiki.debian.org/UserAccounts.

@@ -1,0 +1,99 @@
+.\" Copyright: 1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2007 Jörg Hoh <joerg@joerghoh.de>
+.\"            2011 Stephen Gran <sgran@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public Lisence version 2
+.\" or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH DELUSER.CONF 5 "" "Debian GNU/Linux" 
+.SH NOM
+/etc/deluser.conf —\ Fichier de configuration de \fBdeluser\fP(8) et
+\fBdelgroup\fP(8).
+.SH DESCRIPTION
+Le fichier \fI/etc/deluser.conf\fP contient les valeurs par défaut des
+programmes \fBdeluser\fP(8) et \fBdelgroup\fP(8). Chaque ligne comporte une seule
+paire de valeurs de la forme \fIoption\fP\ = \fIvaleur\fP. Les guillemets simples
+ou doubles sont autorisés autour de la valeur, ainsi que des espaces autour
+du signe égal. Les lignes de commentaires doivent avoir un croisillon (#) en
+début de ligne.
+.PP
+\fBdeluser\fP(8) et \fBdelgroup\fP(8) lisent aussi \fI/etc/adduser.conf\fP, consulter
+\fBadduser.conf\fP(5). Les paramètres de \fIdeluser.conf\fP peuvent surcharger des
+paramètres de \fIadduser.conf\fP.
+.PP
+Les options de configuration valables sont\ :
+.TP 
+\fBBACKUP\fP
+Si \fBREMOVE_HOME\fP ou \fBREMOVE_ALL_FILES\fP sont activés, tous les fichiers
+sont sauvegardés avant d'être supprimés. Les fichiers de sauvegarde sont
+créés par défaut sous \fInom_utilisateur.tar(.gz|.bz2)\fP dans le répertoire
+indiqué par l'option \fBBACKUP_TO\fP. La meilleure méthode de compression
+trouvée est utilisée. La valeur peut être 0 ou\ 1. Par défaut,\ \fB0\fP.
+.TP 
+\fBBACKUP_SUFFIX\fP
+Sélectionner un algorithme de compression pour une sauvegarde de répertoire
+personnel. Cela peut être défini à n’importe quel suffixe reconnu par
+\fBtar\ \-\-auto\-compress\fP. Par défaut, \fI.gz\fP.
+.TP 
+\fBBACKUP_TO\fP
+Si \fBBACKUP\fP est activé, \fBBACKUP_TO\fP indique le répertoire dans lequel la
+sauvegarde est écrite. Par défaut, le répertoire courant est utilisé.
+.TP 
+\fBEXCLUDE_FSTYPES\fP
+Une expression rationnelle qui décrit les systèmes de fichiers à exclure
+lors de la recherche des fichiers de l'utilisateur à supprimer. La valeur
+par défaut est \fI(proc|sysfs|usbfs|devtmpfs|devpts|afs)\fP.
+.TP 
+\fBNO_DEL_PATHS\fP
+Liste d'expressions rationnelles, séparées par des espaces. Tous les
+fichiers à détruire lors de la suppression d'un répertoire personnel ou des
+fichiers de l'utilisateur ailleurs sont comparés à chacune de ces
+expressions rationnelles. Si une correspondance est détectée, le fichier
+n'est pas supprimé. La valeur par défaut est une liste de répertoires
+système, ne laissant que \fI/home\fP. Par conséquent, seuls les fichiers sous
+\fI/home\fP appartenant à cet utilisateur seront supprimés.
+.TP 
+\fBONLY_IF_EMPTY\fP
+Ne supprimer un groupe que s'il n'y a plus aucun utilisateur appartenant à
+ce groupe. La valeur par défaut est\ \fB0\fP.
+.TP 
+\fBREMOVE_ALL_FILES\fP
+Suppression de tous les fichiers du système qui appartiennent à
+l'utilisateur à retirer. Si cette option est activée, \fBREMOVE_HOME\fP n'a
+aucun effet. La valeur peut être 0 ou\ 1. Par défaut,\ \fB0\fP.
+.TP 
+\fBREMOVE_HOME\fP
+Suppression du répertoire personnel et de la liste d’attente de courriels de
+l'utilisateur à retirer. La valeur peut être 0 (ne pas supprimer) ou 1
+(supprimer). Par défaut,\ \fB0\fP.
+
+.SH FICHIERS
+\fI/etc/deluser.conf\fP
+.SH "VOIR AUSSI"
+\fBadduser.conf\fP(5), \fBdelgroup\fP(8), \fBdeluser\fP(8)
+.SH TRADUCTION
+Ce document est une traduction réalisée par Christophe Sauthier
+<christophe@sauthier.com>(2002), reprise avec po4a par Nicolas FRANÇOIS
+(2004-2008) et mise à jour par David Prévot <david@tilapin.org> (2010) et
+Jean-Paul Guillonneau <guillonneau.jeanpaul@free.fr> (2016-2025).
+
+L'équipe de traduction a fait le maximum pour réaliser une adaptation
+française de qualité.
+
+La version anglaise de ce document est toujours consultable
+en ajoutant l'option «\ \-L C\ » à la commande \fBman\fR.
+
+N'hésitez pas à signaler à l'auteur ou à la liste de traduction
+.nh
+<\fIdebian\-l10n\-french@lists.debian.org\fR>,
+.hy
+selon le cas, toute erreur dans cette page de manuel.

@@ -1,0 +1,216 @@
+.\" Copyright: 1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2008 Stephen Gran <sgran@debian.org>
+.\"            2007 Jörg Hoh <joerg@joerghoh.de>
+.\"            2016 Afif Elghraoui <afif@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public License version 2
+.\" or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH ADDUSER.CONF 5 "" "Debian GNU/Linux" 
+.SH NOME
+/etc/adduser.conf \- ficheiro de configuração para \fBadduser\fP(8) e
+\fBaddgroup\fP(8).
+.SH DESCRIÇÃO
+O ficheiro \fI/etc/adduser.conf\fP contém predefinições para os programas
+\fBadduser\fP(8) , \fBaddgroup\fP(8) , \fBdeluser\fP(8) e \fBdelgroup\fP(8). Cada linha
+contém um único par de valores no formato \fIopção\fP = \fIvalor\fP. São
+permitidas cotações simples ou duplas a delimitar o valor, assim como o
+espaço em branco a rodear o sinal igual (=). As linhas comentários têm de
+ter um cardinal (#) na primeira coluna.
+.PP
+As opções de configuração válidas são:
+.TP 
+\fBSTDERRMSGLEVEL ,  STDOUTMSGLEVEL , e  LOGMSGLEVEL\fP
+Prioridade mínima para mensagens registadas no syslog/journal e na consola,
+respetivamente. Veja \fBREGISTO\fP no adduser(8).  Predefinido para \fIwarn\fP
+para STDOUTMSGLEVEL e STDERRMSGLEVEL e \fIinfo\fP para LOGMSGLEVEL.
+.TP 
+\fBADD_EXTRA_GROUPS\fP
+Definir isto para algo diferente de 0 irá fazer com que o \fBadduser\fP
+adicione os utilizadores não\-sistema recentemente criados à lista de grupos
+definida por \fBEXTRA_GROUPS\fP (ver abaixo). A predefinição é \fI0\fP.
+.TP 
+\fBDIR_MODE\fP
+O modo de permissões para directórios home de utilizadores não\-sistema que
+são criados pelo \fBadduser\fP(8). A predefinição é \fI0700\fP. Note que existem
+configurações potenciais (tais como serviços web ~/user, ou entrega de mail
+em\-home) que irão requerer alterações à predefinição. Veja também
+\fBSYS_DIR_MODE\fP.
+.TP 
+\fBDHOME\fP
+O directório onde os novos directórios home devem ser criados. A
+predefinição é \fI/home\fP.
+.TP 
+\fBDSHELL\fP
+A shell de login a ser usada para todos os utilizadores novos. A
+predefinição é \fI/bin/bash\fP.
+.TP 
+\fBEXTRA_GROUPS\fP
+Isto é a lista de grupos separados por espaços à qual os novos utilizadores
+não\-do\-sistema serão adicionados. A predefinição é \fIusers\fP.
+.TP 
+\fBFIRST_SYSTEM_GID  e  LAST_SYSTEM_GID\fP
+especifica um alcance inclusivo de GIDs a partir do qual os GIDs para grupos
+de sistema podem ser alocados dinamicamente. A predefinição é \fI100\fP \-
+\fI999\fP.
+.TP 
+\fBFIRST_GID  e  LAST_GID\fP
+especifica um alcance inclusivo de GIDs a partir do qual os GIDs de grupos
+não\-sistema podem ser alocados dinamicamente. A predefinição é \fI1000\fP \-
+\fI59999\fP.
+.TP 
+\fBFIRST_SYSTEM_UID  e  LAST_SYSTEM_UID\fP
+especifica um alcance inclusivo de UIDs a partir do qual os UIDs de
+utilizadores do sistema podem ser alocados dinamicamente. A predefinição é
+\fI100\fP \- \fI999\fP. Por favor note que o software do sistema, tal como os
+utilizadores alocados pelo pacote \fIbase\-passwd\fP, pode assumir que os UIDs
+menores que 100 não são alocáveis.
+.TP 
+\fBFIRST_UID  e  LAST_UID\fP
+especifica um alcance inclusivo de UIDs a partir do qual os UIDs de
+utilizadores não\-sistema podem ser alocados dinamicamente. A predefinição é
+\fI1000\fP \- \fI59999\fP.
+.TP 
+\fBGID_POOL\fP
+Veja \fBUID_POOL\fP.
+.TP 
+\fBGROUPHOMES\fP
+Se isto estiver definido para \fIyes\fP, os directórios home serão criados como
+\fI/home/nome_do_grupo/utilizador\fP. A predefinição é \fIno\fP. Esta opção está
+\fBdescontinuada\fP e irá ser removida.
+.TP 
+\fBLAST_SYSTEM_GID\fP
+.TQ
+\fBLAST_GID\fP
+.TQ
+\fBLAST_SYSTEM_UID\fP
+.TQ
+\fBLAST_UID\fP
+Veja as variantes \fBFIRST_\fP da opção.
+.TP 
+\fBLETTERHOMES\fP
+Se isto estiver definido para \fIyes\fP, então os directórios home criados irão
+ter um directório extra inserido o qual é a primeira letra do nome de
+login. Por exemplo: \fI/home/u/utilizador\fP. A predefinição é \fIno\fP. Esta
+opção está \fBdescontinuada\fP e irá ser removida.
+.TP 
+\fBNAME_REGEX\fP
+Os nomes de utilizadores não\-sistema e grupos são verificados contra esta
+expressão regular. Se o nome não condizer com esta expressão regular, a
+criação do utilizador e grupo no \fBadduser\fP(8) é recusada a menos que se
+defina \fB\-\-allow\-bad\-names\fP. Com \fB\-\-allow\-bad\-names\fP definido, são
+executadas verificações mais fracas. A predefinição é a mais conservadora
+\fI^[a\-zA\-Z][a\-zA\-Z0\-9_\-]*\e$?$\fP.  Veja \fBSYS_NAME_REGEX\fP e \fBNomes válidos\fP,
+em baixo para mais informação.
+.TP 
+\fBQUOTAUSER\fP
+Se definido para um valor não vazio, os novos utilizadores irão ter cotas
+copiadas a partir desse utilizador usando \fIedquota \-p QUOTAUSER novo\-utilizador\fP. A predefinição é \fIa string vazia\fP.
+.TP 
+\fBRESERVE_UID_POOL  e  RESERVE_GID_POOL\fP
+Controla se os valores UID e GID que estão listados nos ficheiros pool são
+verdadeiramente reservados.  Veja UID e GID POOLS na secção NOTAS.
+Predefinido para \fIyes\fP.
+.TP 
+\fBSETGID_HOME\fP
+Se isto estiver definido para \fIyes\fP, então os directórios home para
+utilizadores com o seu próprio grupo (\fBUSERGROUPS\fP = yes) irão ter o bit
+set\-group\-ID definido. Note que esta funcionalidade está \fBdescontinuada\fP e
+irá ser removida numa versão futura do \fBadduser\fP(8). Por favor use
+\fBDIR_MODE\fP em vez disto. A predefinição é \fIno\fP.
+.TP 
+\fBSKEL\fP
+O directório de onde o esqueleto de ficheiros de configuração do utilizador
+irá ser copiado. A predefinição é \fI/etc/skel\fP.
+.TP 
+\fBSKEL_IGNORE_REGEX\fP
+Ao povoar um directório home recentemente criado de um utilizador
+não\-sistema, os ficheiros em SKEL que correspondem a este regex não são
+copiados. A predefinição é \fI(.(dpkg|ucf)\-(old|new|dist)$)\fP, a expressão
+regular que corresponde ficheiros que sobram de ficheiros de configuração
+de\-fundidos.
+.TP 
+\fBSYS_DIR_MODE\fP
+O modo de permissões para directórios home de utilizadores de sistema que
+são criados pelo \fBadduser\fP(8). A predefinição é \fI0755\fP. Note que alterar
+as permissões predefinidas para utilizadores de sistema pode fazer com que
+alguns pacotes tenham comportamentos não confiáveis, se o programa depender
+das definições predefinidas. Veja também \fBDIR_MODE\fP.
+.TP 
+\fBSYS_NAME_REGEX\fP
+Os nomes de utilizadores de sistema e grupos são verificados contra esta
+expressão regular. Se o nome não condizer com esta expressão regular, a
+criação do utilizador de sistema e grupo no B é recusada a menos que se
+defina \fB\-\-allow\-bad\-names\fP. Com \fB\-\-allow\-bad\-names\fP definido, são
+executadas verificações mais fracas. A predefinição é a mais conservadora
+\fI^[a\-zA\-Z_][a\-zA\-Z0\-9_\-]*\e$?$\fP.  Veja \fBNAME_REGEX\fP, em cima, e \fBNomes válidos\fP, em baixo para mais informação.
+.TP 
+\fBUID_POOL  e  GID_POOL\fP
+especifica um ficheiro ou directório que contém ficheiros pool UID e
+GID. Veja UID E GID POOLS na secção NOTAS. Ambos são predefinidos para
+\fIvazio\fP.
+.TP 
+\fBUSERGROUPS\fP
+Especifica se a cada utilizador não\-sistema criado lhe será dado o seu
+próprio grupo para usar. A predefinição é \fIyes\fP.
+.TP 
+\fBUSERS_GID  e  USERS_GROUP\fP
+Define o nome\-de\-grupo ou GID do grupo onde todos os utilizadores
+não\-sistema recentemente\-criados são colocados. Se \fBUSERGROUPS\fP for \fIyes,\fP
+o grupo será adicionado como um grupo suplementar; se \fBUSERGROUPS\fP for
+\fIno,\fP, irá ser o grupo primário. Se você não quer que todos os seus
+utilizadores estejam em um grupo, defina \fBUSERGROUPS\fP=\fIyes\fP, deixe
+\fBUSERS_GROUP\fP vazio e defina \fBUSERS_GID\fP para "\-1".  \fBUSERS_GROUP\fP está
+predefinido para \fIusers\fP, o qual tem GID 100 em todos os sistemas Debian
+desde que é definido estaticamente pelo pacote \fIbase\-passwd\fP. É um erro de
+configuração definir ambas variáveis mesmo que os valores sejam
+consistentes.
+.SH NOTAS
+.SS "As POOLS UID e GID"
+Algumas instalações desejam que uma conta não\-sistema obtenha propriedades
+pré\-configuradas quando é gerada. É comum que o administrador local queira
+certificar que mesmo sem usar um serviço de directório, uma conta ou um
+grupo com um certo nome tenha o mesmo UID/GID numérico em todos os sistemas
+em que exista.
+.PP
+Para activar esta funcionalidade, defina as variáveis de configuração
+\fBUID_POOL\fP (por contas de utilizador)  e/ou \fBGID_POOL\fP (por grupos) em
+\fI/etc/adduser.conf\fP e instale os respetivos ficheiros nos lugares
+configurados. O valor é ou um ficheiro ou um directório. No último caso
+todos os ficheiros nomeados \fI*.conf\fP nesse directório são considerados.
+.PP
+O formato do ficheiro é semelhante a \fI/etc/passwd\fP: Linhas de texto, campos
+separados por dois\-pontos. Os valores são nome\-utilizador/nome\-grupo
+(obrigatório), UID/GID (obrigatório), campo de comentário (opcional, útil
+apenas para IDs de utilizador), directório home (idem), shell (idem).
+.PP
+É possível usar o mesmo ficheiro/directório para \fBUID_POOL\fP e \fBGID_POOL\fP.
+.PP
+Se uma conta / grupo for criado, o \fBadduser\fP(8) procura em todos os
+ficheiros pool UID/GID por uma linha que corresponda ao nome da conta nova
+criada e usa os dados encontrados lá para inicializar a nova conta em vez de
+usar as predefinições. As definições pode ser sobrepostas a partir da linha
+de comandos.
+.PP
+Na configuração predefinida, os valores UID e GID listados na pool irão ser
+reservados e assim não serão usados pelos processos de seleção de UID e GID
+normais.  Isto é geralmente o que deve desejar.  Com as opções de
+configuração \fBRESERVE_UID_POOL\fP e \fBRESERVE_GID_POOL\fP, você pode desligar
+este comportamento se desejar os UIDs e GIDs da pool usados por contas
+regulares.  Isto pode causar conflitos e causar que os seus UIDs e GIDs em
+pool sejam usados por contas que não estejam na pool.
+
+.SH FICHEIROS
+\fI/etc/adduser.conf\fP
+.SH "VEJA TAMBÉM"
+\fBdeluser.conf\fP(5), \fBaddgroup\fP(8), \fBadduser\fP(8), \fBdelgroup\fP(8),
+\fBdeluser\fP(8)

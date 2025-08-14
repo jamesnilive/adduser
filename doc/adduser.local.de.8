@@ -1,0 +1,49 @@
+.\" Copyright 2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"
+.\" This is free software; see the GNU General Public License version
+.\" 2 or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH ADDUSER 8 "" "Debian GNU/Linux" 
+.SH BEZEICHNUNG
+adduser.local, deluser.local \- Einhängepunkte für lokale Aktionen in Adduser
+und Deluser
+.SH ÜBERSICHT
+.SY adduser.local
+.OP Benutzername
+.OP UID
+.OP GID
+.OP Home\-Verzeichnis
+.SY deluser.local
+.OP Benutzername
+.OP UID
+.OP GID
+.OP Home\-Verzeichnis
+.YS
+.SH BESCHREIBUNG
+\fBadduser.local\fP und \fBdeluser.local\fP können vom lokalen Administrator in
+\fI/usr/local/sbin\fP abgelegt werden. Sie werden von \fBadduser\fP(8)
+bzw. \fBdeluser\fP(8) aufgerufen, um lokal relevante Einrichtungs\- und
+Aufräumaktionen durchzuführen.
+.PP
+Die Einhängepunkte werden aufgerufen, während die Adduser/Deluser\-Sperre
+aktiv ist. Sie dürfen daher nicht selbst an Adduser/Deluser zurückaufrufen.
+.SH RÜCKGABEWERT
+Die Rückgabewerte von den Einhängepunkten werden ignoriert.
+
+.SH UMGEBUNG
+\fBVERBOSE\fP
+.IP 0
+falls \fB\-\-quiet\fP angegeben wurde
+.IP 1
+falls weder \fB\-\-quiet\fP noch \fB\-\-debug\fP angegeben wurde
+.IP 2
+falls \fB\-\-debug\fP angegeben wurde
+
+.SH "SIEHE AUCH"
+\fBadduser.conf\fP(5), \fBdeluser.conf\fP(5), \fBadduser\fP(8), \fBdeluser\fP(8),
+\fBgroupadd\fP(8), \fBuseradd\fP(8), \fBusermod\fP(8), Debian Richtlinie 9.2.2.
+

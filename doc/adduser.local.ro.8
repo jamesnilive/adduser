@@ -1,0 +1,49 @@
+.\" Copyright 2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"
+.\" This is free software; see the GNU General Public License version
+.\" 2 or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH ADDUSER 8 "" "Debian GNU/Linux" 
+.SH NUME
+adduser.local, deluser.local \- cârlig pentru acțiuni locale în adduser și
+deluser
+.SH SINOPSIS
+.SY adduser.local
+.OP nume\-utilizator
+.OP uid
+.OP gid
+.OP director\-personal
+.SY deluser.local
+.OP nume\-utilizator
+.OP uid
+.OP gid
+.OP director\-personal
+.YS
+.SH DESCRIPTION
+\fBadduser.local\fP și \fBdeluser.local\fP pot fi plasate de administratorul local
+în \fI/usr/local/sbin\fP și vor fi apelate de \fBadduser\fP și, respectiv,
+\fBdeluser\fP pentru a efectua acțiuni de configurare și curățare relevante la
+nivel local.
+.PP
+Cârligele sunt apelate în timp ce blocajul adduser/deluser este activ. Prin
+urmare, acestea nu trebuie să apeleze ele însele la adduser/deluser.
+.SH "VALOAREA RETURNATĂ"
+Valorile returnate de către cârlige sunt ignorate.
+
+.SH MEDIU
+\fBVERBOSE\fP
+.IP 0
+dacă este specificată opțiunea „\-\-quiet”
+.IP 1
+dacă nu este specificată nici opțiunea „\-\-quiet”, nici opțiunea „\-\-debug”
+.IP 2
+dacă este specificată opțiunea „\-\-debug”
+
+.SH "CONSULTAȚI ȘI"
+\fBadduser.conf\fP(5), \fBdeluser.conf\fP(5), \fBadduser\fP(8), \fBdeluser\fP(8),
+\fBgroupadd\fP(8), \fBuseradd\fP(8), \fBusermod\fP(8), Politica Debian 9.2.2.
+

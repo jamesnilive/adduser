@@ -1,0 +1,48 @@
+.\" Copyright 2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"
+.\" This is free software; see the GNU General Public License version
+.\" 2 or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH ADDUSER 8 "" "Debian GNU/Linux" 
+.SH NOME
+adduser.local, deluser.local \- hook para ações locais no adduser e deluser
+.SH SINOPSE
+.SY adduser.local
+.OP nome\-de\-utilizador
+.OP uid
+.OP gid
+.OP directório\-home
+.SY deluser.local
+.OP nome\-de\-utilizador
+.OP uid
+.OP gid
+.OP directório\-home
+.YS
+.SH DESCRIÇÃO
+\fBadduser.local\fP e \fBdeluser.local\fP podem ser colocados pelo administrador
+local em \fI/usr/local/sbin\fP e serão chamados pelo \fBadduser\fP e \fBdeluser\fP
+respetivamente de modo a fazerem localmente configurações relevantes e
+acções de limpeza.
+.PP
+Os hooks são chamados enquanto a tranca adduser/deluser está activa.  Assim
+eles não podem re\-chamar adduser/deluser eles próprios.
+.SH "VALORES DE RETORNO"
+Os valores retornados dos hooks são ignorados.
+
+.SH AMBIENTE
+\fBVERBOSE\fP
+.IP 0
+SE \-\-quiet for especificado
+.IP 1
+se nem \-\-quiet nem \-\-debug for especificado
+.IP 2
+se \-\-debug for especificado
+
+.SH "VEJA TAMBÉM"
+\fBadduser.conf\fP(5), \fBdeluser.conf\fP(5), \fBadduser\fP(8), \fBdeluser\fP(8),
+\fBgroupadd\fP(8), \fBuseradd\fP(8), \fBusermod\fP(8), Debian Policy 9.2.2.
+

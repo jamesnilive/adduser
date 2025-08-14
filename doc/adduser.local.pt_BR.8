@@ -1,0 +1,49 @@
+.\" Copyright 2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"
+.\" This is free software; see the GNU General Public License version
+.\" 2 or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH ADDUSER 8 "" "Debian GNU/Linux" 
+.SH NOME
+adduser.local, deluser.local \- gancho para ações locais em adduser e deluser
+.SH SINOPSE
+.SY adduser.local
+.OP "nome de usuário"
+.OP uid
+.OP gid
+.OP "diretório home"
+.SY deluser.local
+.OP "nome de usuário"
+.OP uid
+.OP gid
+.OP "diretório home"
+.YS
+.SH DESCRIÇÃO
+\fBadduser.local\fP e \fBdeluser.local\fP podem ser colocados pelo administrador
+local em \fI/usr/local/sbin\fP e serão chamados por \fBadduser\fP e \fBdeluser\fP
+respectivamente para realizar ações de configuração e limpeza relevantes
+localmente.
+.PP
+Os ganchos são chamados enquanto o bloqueio adduser/deluser está
+ativo. Portanto, eles não devem, eles mesmos, chamar de volta para
+adduser/deluser.
+.SH "VALOR DE RETORNO"
+Os valores de retorno dos ganchos são ignorados.
+
+.SH AMBIENTE
+\fBVERBOSE\fP
+.IP 0
+se \-\-quiet é especificado
+.IP 1
+se nem \-\-quiet ou nem \-\-debug é especificado
+.IP 2
+se \-\-debug é especificado
+
+.SH "CONSULTE TAMBÉM"
+\fBadduser.conf\fP(5), \fBdeluser.conf\fP(5), \fBadduser\fP(8), \fBdeluser\fP(8),
+\fBgroupadd\fP(8), \fBuseradd\fP(8), \fBusermod\fP(8), Política Debian 9.2.2.
+

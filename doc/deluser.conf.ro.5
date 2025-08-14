@@ -1,0 +1,83 @@
+.\" Copyright: 1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2007 Jörg Hoh <joerg@joerghoh.de>
+.\"            2011 Stephen Gran <sgran@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public Lisence version 2
+.\" or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH DELUSER.CONF 5 "" "Debian GNU/Linux" 
+.SH NUME
+/etc/deluser.conf \- fișier de configurare pentru \fBdeluser\fP(8) și
+\fBdelgroup\fP(8).
+.SH DESCRIPTION
+Fișierul \fI/etc/deluser.conf\fP conține valorile implicite pentru programele
+\fBdeluser\fP(8) și \fBdelgroup\fP(8). Fiecare linie conține o singură pereche de
+valori în forma \fIopțiune\fP = \fIvaloare\fP. Sunt permise ghilimele duble sau
+simple în jurul valorii, precum și spații albe în jurul semnului
+egal. Liniile de comentariu trebuie să aibă un simbol hash (#) în prima
+coloană.
+.PP
+\fBdeluser\fP(8) și \fBdelgroup\fP(8) citesc de asemenea și \fI/etc/adduser.conf\fP,
+a se vedea \fBadduser.conf\fP(5); configurările din \fIdeluser.conf\fP pot
+suprascrie configurările făcute în \fIadduser.conf\fP.
+.PP
+Opțiunile de configurare valide sunt:
+.TP 
+\fBBACKUP\fP
+Dacă \fBREMOVE_HOME\fP sau \fBREMOVE_ALL_FILES\fP este activată, toate fișierele
+sunt salvate (ca o copi de rezervă) înainte de a fi eliminate. Fișierul de
+copie de rezervă care este creat are valoarea implicită
+\fInume\-utilizator.tar(.gz|.bz2)\fP în directorul specificat de opțiunea
+\fBBACKUP_TO\fP. Metoda de comprimare este aleasă la cea mai bună
+disponibilă. Valorile pot fi 0 sau 1. Valoarea implicită este \fI0\fP.
+.TP 
+\fBBACKUP_SUFFIX\fP
+Selectează algoritmul de comprimare pentru o copie de rezervă a directorului
+personal. Poate fi stabilită la orice sufix recunoscut de \fBtar \-\-auto\-compress\fP. Valoarea implicită este \fI.gz\fP.
+.TP 
+\fBBACKUP_TO\fP
+Dacă \fBBACKUP\fP este activată, \fBBACKUP_TO\fP specifică directorul în care este
+scrisă copia de rezervă. Valoarea implicită este directorul curent.
+.TP 
+\fBEXCLUDE_FSTYPES\fP
+O expresie regulată care descrie toate tipurile de sisteme de fișiere care
+ar trebui excluse atunci când se caută fișiere ale unui utilizator care
+urmează să fie șterse. Valoarea implicită este
+„(proc|sysfs|usbfs|devtmpfs|devpts|afs)”.
+.TP 
+\fBNO_DEL_PATHS\fP
+O listă de expresii regulate, separate prin spații. Toate fișierele care
+urmează să fie șterse în cursul ștergerii directorului personal sau a
+fișierelor deținute de utilizator în altă parte sunt verificate în raport cu
+fiecare dintre aceste expresii regulate. Dacă este detectată o potrivire,
+fișierul nu este șters. Valoarea implicită este o listă de directoare de
+sistem, lăsând doar \fI/home\fP.  Prin urmare, numai fișierele de sub \fI/home\fP
+care aparțin utilizatorului respectiv vor fi șterse.
+.TP 
+\fBONLY_IF_EMPTY\fP
+Șterge un grup numai dacă nu există utilizatori care să aparțină acestui
+grup. Valoarea implicită este 0.
+.TP 
+\fBREMOVE_ALL_FILES\fP
+Elimină toate fișierele din sistem deținute de utilizatorul care urmează să
+fie eliminat. Dacă această opțiune este activată, \fBREMOVE_HOME\fP nu are
+niciun efect. Valorile pot fi 0 sau 1. Valoarea implicită este \fI0\fP.
+.TP 
+\fBREMOVE_HOME\fP
+Elimină directorul personal și fișierul de corespondență al utilizatorului
+care urmează să fie eliminat. Valoarea poate fi 0 („nu șterge”) sau 1
+(„șterge”). Valoarea implicită este \fI0\fP.
+
+.SH FIȘIERE
+\fI/etc/deluser.conf\fP
+.SH "CONSULTAȚI ȘI"
+\fBadduser.conf\fP(5), \fBdelgroup\fP(8), \fBdeluser\fP(8)

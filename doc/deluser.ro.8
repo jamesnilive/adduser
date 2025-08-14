@@ -1,0 +1,280 @@
+.\" Copyright: 1994 Ian A. Murdock <imurdock@debian.org>
+.\"            1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            1997-1999 Guy Maor
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2009 Jörg Hoh <joerg@joerghoh.de>
+.\"            2011 Justin B Rye <jbr@edlug.org.uk>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021-2022 Jason Franklin <jason@oneway.dev>
+.\"
+.\" This is free software; see the GNU General Public License version
+.\" 2 or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH DELUSER 8 "" "Debian GNU/Linux" 
+.SH NUME
+deluser, delgroup \- elimină un utilizator sau un grup din sistem
+.SH SINOPSIS
+.SY deluser
+.OP \-\-backup
+.OP \-\-backup\-suffix șir
+.OP \-\-backup\-to director
+.OP \-\-conf fișier
+.OP \-\-debug
+.OP \-\-remove\-all\-files
+.OP \-\-remove\-home
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prioritatea
+.OP \-\-stderrmsglevel prioritatea
+.OP \-\-logmsglevel prioritatea
+\fButilizator\fP
+.YS
+
+.SY deluser
+.OP \-\-system
+.OP \-\-backup
+.OP \-\-backup\-suffix șir
+.OP \-\-backup\-to director
+.OP \-\-conf fișier
+.OP \-\-debug
+.OP \-\-remove\-all\-files
+.OP \-\-remove\-home
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prioritatea
+.OP \-\-stderrmsglevel prioritatea
+.OP \-\-logmsglevel prioritatea
+\fButilizator\fP
+.YS
+
+.SY deluser
+\fB\-\-group\fP
+.OP \-\-conf fișier
+.OP \-\-debug
+.OP \-\-only\-if\-empty
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prioritatea
+.OP \-\-stderrmsglevel prioritatea
+.OP \-\-logmsglevel prioritatea
+\fBgrup\fP
+.YS
+
+.SY delgroup
+.OP \-\-system
+.OP \-\-conf fișier
+.OP \-\-debug
+.OP \-\-only\-if\-empty
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prioritatea
+.OP \-\-stderrmsglevel prioritatea
+.OP \-\-logmsglevel prioritatea
+\fBgrup\fP
+.YS
+
+.SY deluser
+.OP \-\-conf fișier
+.OP \-\-debug
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prioritatea
+.OP \-\-stderrmsglevel prioritatea
+.OP \-\-logmsglevel prioritatea
+\fButilizator\fP \fBgrup\fP
+.YS
+
+.SY deluser
+\fB\-\-help\fP
+.YS
+.SY deluser
+\fB\-\-version\fP
+.YS
+.SH DESCRIPTION
+\fBdeluser\fP și \fBdelgroup\fP elimină utilizatorii și grupurile din sistem în
+conformitate cu opțiunile liniei de comandă și cu informațiile de
+configurare din \fI/etc/deluser.conf\fP și \fI/etc/adduser.conf\fP.
+.PP
+Acestea sunt interfețe mai specifice Debian pentru programele \fBuserdel\fP și
+\fBgroupdel\fP, care sunt mai agnostice față de distribuție. \fBdeluser\fP și
+\fBdelgroup\fP pot elimina directorul personal ca opțiune sau chiar toate
+fișierele din sistem deținute de utilizator pentru a fi eliminate, pot rula
+un script personalizat și au alte caracteristici.
+.PP
+Pentru o listă completă și explicații ale tuturor opțiunilor, consultați
+secțiunea OPȚIUNI.
+.PP
+\fBdeluser\fP și \fBdelgroup\fP pot fi executate în unul din următoarele trei
+moduri:
+
+.SS "Elimină un utilizator"
+Dacă este apelat cu un argument fără opțiune și fără opțiunea \fB\-\-group\fP,
+\fBdeluser\fP va elimina un utilizator care nu face parte din utilizatorii
+sistemului (non\-sistem).
+.PP
+În mod implicit, \fBdeluser\fP va elimina utilizatorul fără a elimina
+directorul personal, fișierul de corespondență sau orice alte fișiere din
+sistem deținute de utilizator. Eliminarea directorului personal și a
+fișierului de corespondență se poate realiza utilizând opțiunea
+\fB\-\-remove\-home\fP.
+.PP
+Opțiunea \fB\-\-remove\-all\-files\fP elimină toate fișierele din sistem deținute
+de utilizator. Rețineți că, dacă activați ambele opțiuni, opțiunea
+\fB\-\-remove\-home\fP nu va avea niciun efect suplimentar deoarece toate
+fișierele, inclusiv directorul personal și fișierul de corespondență, sunt
+deja acoperite de opțiunea \fB\-\-remove\-all\-files\fP.
+.PP
+Dacă doriți să faceți o copie de rezervă a tuturor fișierelor înainte de a
+le șterge, puteți activa opțiunea \fB\-\-backup\fP care va crea un fișier \fI nume\-utilizator.tar(.gz|.bz2)\fP în directorul specificat de opțiunea
+\fB\-\-backup\-to\fP.
+.PP
+În mod implicit, arhiva de copie de rezervă este comprimată cu
+\fBgzip\fP(1). Pentru a schimba acest lucru, opțiunea \fB\-\-backup\-suffix\fP poate
+fi definită la orice sufix acceptat de \fBtar \-\-auto\-compress\fP.
+.PP
+\fBdeluser\fP va refuza să elimine contul root.
+.PP
+Dacă opțiunea \fB\-\-system\fP este dată în linia de comandă, operația de
+ștergere este de fapt executată numai dacă utilizatorul este un utilizator
+de sistem. Astfel se evită ștergerea accidentală a utilizatorilor
+non\-sistem. În plus, dacă utilizatorul nu există, nu este returnată nicio
+valoare de eroare. Scripturile responsabililor de pachete Debian pot utiliza
+această opțiune pentru a elimina utilizatori sau grupuri de sistem, ignorând
+cazul în care eliminarea a avut deja loc.
+
+.SS "Elimină un grup"
+Dacă \fBdeluser\fP este apelat cu opțiunea \fB\-\-group\fP sau \fBdelgroup\fP este
+apelat, un grup va fi eliminat. Grupul primar al unui utilizator existent nu
+poate fi eliminat. Dacă este dată opțiunea \fB\-\-only\-if\-empty\fP, grupul nu va
+fi eliminat dacă mai are membri.
+.PP
+Opțiunea \fB\-\-system\fP adaugă aceeași funcționalitate ca și pentru eliminarea
+unui utilizator.
+
+.SS "Elimină un utilizator dintr\-un anumit grup"
+Dacă este apelat cu două argumente fără opțiune, \fBdeluser\fP va elimina un
+utilizator dintr\-un anumit grup.
+
+.SH OPȚIUNI
+Diferitele moduri ale \fBdeluser\fP permit opțiuni diferite. Dacă nu sunt
+enumerate moduri valide pentru o opțiune, aceasta este acceptată în toate
+modurile.
+.PP
+Versiunile scurte pentru anumite opțiuni pot exista din motive
+istorice. Acestea vor rămâne acceptate, dar sunt eliminate din
+documentație. Utilizatorii sunt sfătuiți să migreze la versiunea lungă a
+opțiunilor.
+.TP 
+\fB\-\-backup\fP
+Face o copie de rezervă a tuturor fișierelor conținute în directorul
+personal al utilizatorului și în fișierul de corespondență într\-un fișier
+numit \fInume\-utilizator.tar.bz2\fP sau \fInume\-utilizator.tar.gz\fP. Moduri
+valabile: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-backup\-suffix \fPstr
+Selectează algoritmul de comprimare pentru o copie de rezervă a directorului
+personal. Poate fi stabilită la orice sufix recunoscut de \fBtar \-\-auto\-compress\fP. Valoarea implicită este \fI.gz\fP. Moduri valabile:
+\fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-backup\-to \fP\fIdirector\fP
+Plasează fișierele de copie de rezervă nu în directorul curent, ci în
+\fIdirector\fP. Aceasta stabilește implicit și \fB\-\-backup\fP. Valoarea implicită
+este directorul curent de lucru. Moduri valabile: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-conf \fP\fIfișier\fP
+Utilizează \fIfișier\fP în locul fișierelor implicite \fI/etc/deluser.conf\fP și
+\fI/etc/adduser.conf\fP. Pot fi date mai multe opțiuni „\-\-conf”.
+.TP 
+\fB\-\-debug\fP
+Sinonim cu \fB\-\-stdoutmsglevel=debug.\fP Depreciată.
+.TP 
+\fB\-\-group\fP
+Elimină un grup. Aceasta este acțiunea implicită dacă programul este invocat
+ca \fIdelgroup\fP. Mod valid: \fBdeluser\fP.
+.TP 
+\fB\-\-help\fP
+Afișează un mesaj de utilizare succint.
+.TP 
+\fB\-\-only\-if\-empty\fP
+Elimină numai dacă nu mai sunt membri. Moduri valide: \fBdeluser \-\-group\fP,
+\fBdelgroup\fP.
+.TP 
+\fB\-\-quiet\fP
+Sinonim cu \fB\-\-stdoutmsglevel=warn.\fP Depreciată.
+.TP 
+\fB\-\-remove\-all\-files\fP
+Elimină toate fișierele din sistem deținute de acest utilizator. Notă:
+opțiunea „\-\-remove\-home” nu mai are niciun efect. Dacă este specificată
+opțiunea \fB\-\-backup\fP, fișierele sunt șterse după efectuarea copiei de
+rezervă. Moduri valide: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-remove\-home\fP
+Elimină directorul personal al utilizatorului și fișierul de corespondență
+al acestuia. Dacă este specificată opțiunea \fB\-\-backup\fP, fișierele sunt
+șterse după efectuarea copiei de rezervă. Moduri valide: \fBdeluser\fP,
+\fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-system\fP
+Șterge numai dacă utilizatorul/grupul este un utilizator/grup de
+sistem. Dacă utilizatorul nu există, nu este returnată nicio valoare de
+eroare. Moduri valide: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-verbose\fP
+Sinonim cu \fB\-\-stdoutmsglevel=info.\fP Depreciată.
+.TP 
+\fB\-\-stdoutmsglevel\fP\fI prioritatea\fP
+.TQ
+\fB\-\-stderrmsglevel\fP\fI prioritatea\fP
+.TQ
+\fB\-\-logmsglevel\fP\fI prioritatea\fP
+Prioritatea minimă pentru mesajele înregistrate la syslog/journal și,
+respectiv, la consolă. Valorile sunt \fItrace\fP, \fIdebug\fP, \fIinfo\fP, \fIwarn\fP,
+\fIerr\fP și \fIfatal\fP. Mesajele cu prioritatea stabilită aici sau mai mare sunt
+imprimate pe mediul respectiv. Mesajele imprimate la ieșirea de eroare
+standard (stderr) nu sunt repetate la ieșirea standard (stdout). Acest lucru
+permite administratorului local să controleze în mod independent conversația
+lui \fBadduser\fP pe consolă și în jurnal, păstrând pentru sine informațiile
+probabil derutante și lăsând în același timp informații utile în jurnal.
+.TP 
+\fB\-\-version\fP
+Afișează versiunea și informațiile privind drepturile de autor.
+
+.SH LOGGINGâ²
+
+\fBdeluser\fP utilizează o jurnalizare extinsă și configurabilă pentru a\-și
+adapta nivelul de detaliere al informațiilor la nevoile și dorințele
+administratorului de sistem.
+
+Acesta funcționează similar cu \fBadduser\fP. Consultați \fBadduser\fP(8) pentru
+toate detaliile.
+
+.SH "VALORI DE IEȘIRE"
+
+Valorile de ieșire documentate în adduser(8) se aplică și pentru \fBdeluser\fP.
+
+.SH SECURITATE
+\fBdeluser\fP are nevoie de privilegii de root și oferă, prin opțiunea de linie
+de comandă \fB\-\-conf\fP, posibilitatea de a utiliza diferite fișiere de
+configurare. Nu utilizați \fBsudo\fP(8) sau instrumente similare pentru a oferi
+privilegii parțiale lui \fBdeluser\fP cu parametri restricționați ai liniei de
+comandă. Acest lucru este ușor de eludat și ar putea permite utilizatorilor
+să obțină privilegii pe care nu ar trebui să le aibă Dacă doriți acest
+lucru, luați în considerare scrierea propriului dvs. script „ocolitor” și
+acordarea de privilegii pentru executarea scriptului respectiv.
+
+.SH FIȘIERE
+\fI/etc/deluser.conf\fP Fișier de configurare implicit pentru \fBdeluser\fP(8) și
+\fBdelgroup\fP(8)
+.TP 
+\fI/usr/local/sbin/deluser.local\fP
+Suplimente personalizate opționale, consultați \fBdeluser.local\fP(8)
+.
+
+.SH "CONSULTAȚI ȘI"
+\fBadduser\fP(8), \fBdeluser.conf\fP(5), \fBdeluser.local.conf\fP(8), \fBgroupdel\fP(8),
+\fBuserdel\fP(8)

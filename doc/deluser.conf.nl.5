@@ -1,0 +1,84 @@
+.\" Copyright: 1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2007 Jörg Hoh <joerg@joerghoh.de>
+.\"            2011 Stephen Gran <sgran@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public Lisence version 2
+.\" or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH DELUSER.CONF 5 "" "Debian GNU/Linux" 
+.SH NAAM
+/etc/deluser.conf \- configuratiebestand voor \fBdeluser\fP(8) en
+\fBdelgroup\fP(8).
+.SH BESCHRIJVING
+Het bestand \fI/etc/deluser.conf\fP bevat standaardinstellingen voor de
+programma's \fBdeluser\fP(8) en \fBdelgroup\fP(8). Elke regel bevat een waardepaar
+in de vorm \fIoptie\fP = \fIwaarde\fP. Dubbele of enkele aanhalingstekens rond de
+waarde zijn toegestaan, net als witruimte rond het
+gelijkteken. Commentaarregels moeten een hekje (#) hebben in de eerste
+kolom.
+.PP
+\fBdeluser\fP(8) en \fBdelgroup\fP(8) lezen ook \fI/etc/adduser.conf\fP, zie
+\fBadduser.conf\fP(5); instellingen in \fIdeluser.conf\fP kunnen in
+\fIadduser.conf\fP ingestelde instellingen overschrijven.
+.PP
+Geldige configuratieopties zijn:
+.TP 
+\fBBACKUP\fP
+Als \fBREMOVE_HOME\fP of \fBREMOVE_ALL_FILES\fP geactiveerd zijn, wordt van alle
+bestanden een back\-up gemaakt voordat ze worden verwijderd. Het
+back\-upbestand dat wordt aangemaakt is standaard
+\fIgebruikersnaam.tar(.gz|.bz2)\fP in de map die is opgegeven met de optie
+\fBBACKUP_TO\fP. Als compressiemethode wordt de best beschikbare gekozen. De
+waarden kunnen 0 of 1 zijn. Staat standaard ingesteld op \fI0\fP.
+.TP 
+\fBBACKUP_SUFFIX\fP
+Het compressie\-algoritme selecteren voor een back\-up van de persoonlijke
+map. Kan worden ingesteld op elk achtervoegsel dat wordt herkend door \fBtar \-\-auto\-compress\fP. Staat standaard ingesteld op \fI.gz\fP.
+.TP 
+\fBBACKUP_TO\fP
+Als \fBBACKUP\fP geactiveerd is, geeft \fBBACKUP_TO\fP de map aan waarnaar de
+back\-up wordt geschreven. Standaard wordt de huidige map gebruikt.
+.TP 
+\fBEXCLUDE_FSTYPES\fP
+Een reguliere expressie die alle bestandssysteemtypes beschrijft die moeten
+worden uitgesloten bij het zoeken naar te verwijderen bestanden van een
+gebruiker. Staat standaard ingesteld op
+"(proc|sysfs|usbfs|devtmpfs|devpts|afs)".
+.TP 
+\fBNO_DEL_PATHS\fP
+Een lijst met reguliere expressies, gescheiden door spaties. Alle bestanden
+die moeten worden verwijderd tijdens het verwijderen van de persoonlijke map
+of bestanden die elders eigendom zijn van een gebruiker, worden getoetst aan
+elk van deze reguliere expressies. Als er een overeenkomst wordt gevonden,
+wordt het bestand niet verwijderd. Staat standaard ingesteld op een lijst
+met systeemmappen, waarbij alleen \fI/home\fP overblijft. Daarom worden alleen
+bestanden onder \fI/home\fP die toebehoren aan die specifieke gebruiker,
+verwijderd.
+.TP 
+\fBONLY_IF_EMPTY\fP
+Een groep alleen verwijderen als er geen gebruikers tot deze groep
+behoren. Staat standaard ingesteld op 0.
+.TP 
+\fBREMOVE_ALL_FILES\fP
+Verwijdert alle bestanden op het systeem die eigendom zijn van de te
+verwijderen gebruiker. Als deze optie is geactiveerd, heeft \fBREMOVE_HOME\fP
+geen effect. De waarde kan 0 of 1 zijn. Staat standaard ingesteld op \fI0\fP.
+.TP 
+\fBREMOVE_HOME\fP
+Verwijdert de persoonlijke map en de map met e\-mail van de te verwijderen
+gebruiker. De waarde kan 0 (niet verwijderen) of 1 (verwijderen) zijn. Staat
+standaard ingesteld op \fI0\fP.
+
+.SH BESTANDEN
+\fI/etc/deluser.conf\fP
+.SH "ZIE OOK"
+\fBadduser.conf\fP(5), \fBdelgroup\fP(8), \fBdeluser\fP(8)

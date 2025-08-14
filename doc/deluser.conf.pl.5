@@ -1,0 +1,81 @@
+.\" Copyright: 1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2007 Jörg Hoh <joerg@joerghoh.de>
+.\"            2011 Stephen Gran <sgran@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public Lisence version 2
+.\" or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH DELUSER.CONF 5 "" "Debian GNU/Linux" 
+.SH NAZWA
+/etc/deluser.conf \- plik konfiguracyjny programów \fBdeluser\fP(8) i
+\fBdelgroup\fP(8).
+.SH OPIS
+The file \fI/etc/deluser.conf\fP contains defaults for the programs
+\fBdeluser\fP(8)  and \fBdelgroup\fP(8).  Each line holds a single value pair in
+the form \fIoption\fP = \fIvalue\fP.  Double or single quotes are allowed around
+the value, as is whitespace around the equals sign.  Comment lines must have
+a hash sign (#) in the first column.
+.PP
+\fBdeluser\fP(8) and \fBdelgroup\fP(8)  also read \fI/etc/adduser.conf\fP, see
+\fBadduser.conf\fP(5); settings in \fIdeluser.conf\fP may overwrite settings made
+in \fIadduser.conf\fP.
+.PP
+Poprawne są następujące opcje:
+.TP 
+\fBBACKUP\fP
+If \fBREMOVE_HOME\fP or \fBREMOVE_ALL_FILES\fP is activated, all files are backed
+up before they are removed.  The backup file that is created defaults to
+\fIusername.tar(.gz|.bz2)\fP in the directory specified by the \fBBACKUP_TO\fP
+option.  The compression method is chosen to the best that is available.
+Values may be 0 or 1. Defaults to \fI0\fP.
+.TP 
+\fBBACKUP_SUFFIX\fP
+Select compression algorithm for a home directory backup.  Can be set to any
+suffix recognized by \fBtar \-\-auto\-compress\fP.  Defaults to \fI.gz\fP.
+.TP 
+\fBBACKUP_TO\fP
+Jeżeli uaktywniono \fBBACKUP\fP, to \fBBACKUP_TO\fP określa nazwę katalogu, w
+którym są zapisywane pliki z kopiami zapasowymi. Domyślną wartością jest
+katalog bieżący.
+.TP 
+\fBEXCLUDE_FSTYPES\fP
+A regular expression which describes all filesystem types which should be
+excluded when looking for files of a user to be deleted. Defaults to
+"(proc|sysfs|usbfs|devtmpfs|devpts|afs)".
+.TP 
+\fBNO_DEL_PATHS\fP
+A list of regular expressions, space separated.  All files to be deleted in
+course of deleting the home directory or user\-owned files elsewhere are
+checked against each of these regular expressions.  If a match is detected,
+the file is not deleted.  Defaults to a list of system directories, leaving
+only \fI/home\fP.  Therefore only files below \fI/home\fP belonging to that
+specific user are going to be deleted.
+.TP 
+\fBONLY_IF_EMPTY\fP
+Only delete a group if there are no users belonging to this group.  Defaults
+to 0.
+.TP 
+\fBREMOVE_ALL_FILES\fP
+Removes all files on the system owned by the user to be removed.  If this
+option is activated \fBREMOVE_HOME\fP has no effect.  Values may be 0 or
+1. Defaults to \fI0\fP.
+.TP 
+\fBREMOVE_HOME\fP
+Removes the home directory and mail spool of the user to be removed.  Value
+may be 0 (don't delete) or 1 (do delete). Defaults to \fI0\fP.
+
+.SH PLIKI
+\fI/etc/deluser.conf\fP
+.SH "ZOBACZ TAKŻE"
+\fBadduser.conf\fP(5), \fBdelgroup\fP(8), \fBdeluser\fP(8)
+.SH TŁUMACZENIE
+Robert Luberda <robert@debian.org>, październik 2005 r.

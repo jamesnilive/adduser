@@ -1,0 +1,646 @@
+.\" Copyright: 1994 Ian A. Murdock <imurdock@debian.org>
+.\"            1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            1997-1999 Guy Maor
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de
+.\"            2005-2009 Jörg Hoh <joerg@joerghoh.de
+.\"            2006-2011 Stephen Gran <sgran@debian.org>
+.\"            2011 Justin B Rye <jbr@edlug.org.uk>
+.\"            2016 Afif Elghraoui <afif@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021-2022 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public License version
+.\" 2 or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH ADDUSER 8 "" "Debian GNU/Linux" 
+.SH NOME
+adduser, addgroup \- adiciona ou manipula utilizadores ou grupos
+.SH SINOPSE
+.SY adduser
+.OP \-\-add\-extra\-groups
+.OP \-\-allow\-all\-names
+.OP \-\-allow\-bad\-names
+.OP \-\-comment comentário
+.OP \-\-conf ficheiro
+.OP \-\-debug
+.OP \-\-disabled\-login
+.OP \-\-disabled\-password
+.OP \-\-encrypt\-home
+.OP \-\-firstgid id
+.OP \-\-firstuid id
+.OP \-\-gid id
+.OP \-\-home directório
+.OP \-\-ingroup group
+.OP \-\-lastgid id
+.OP \-\-lastuid id
+.OP \-\-no\-create\-home
+.OP \-\-shell shell
+.OP \-\-quiet
+.OP \-\-uid id
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBuser\fP
+.YS
+.SY adduser
+\fB\-\-system\fP
+.OP \-\-comment comentário
+.OP \-\-conf ficheiro
+.OP \-\-debug
+.OP \-\-gid id
+.OP \-\-group
+.OP \-\-home directório
+.OP \-\-ingroup group
+.OP \-\-no\-create\-home
+.OP \-\-shell shell
+.OP \-\-uid id
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBuser\fP
+.YS
+.SY adduser
+\fB\-\-group\fP
+.OP \-\-conf ficheiro
+.OP \-\-debug
+.OP \-\-firstgid id
+.OP \-\-gid ID
+.OP \-\-lastgid id
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgroup\fP
+.YS
+.SY addgroup
+.OP \-\-conf ficheiro
+.OP \-\-debug
+.OP \-\-firstgid id
+.OP \-\-gid ID
+.OP \-\-lastgid id
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgroup\fP
+.YS
+.SY addgroup
+\fB\-\-system\fP
+.OP \-\-gid id
+.OP \-\-conf ficheiro
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgroup\fP
+.YS
+.SY adduser
+.OP \-\-conf ficheiro
+.OP \-\-debug
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBuser\fP \fBgroup\fP
+.YS
+.SY adduser
+\fB\-\-help\fP
+.YS
+.SY adduser
+\fB\-\-version\fP
+.YS
+.SH DESCRIÇÃO
+\fBadduser\fP e \fBaddgroup\fP adicionam utilizadores e grupos ao sistema de
+acordo com opções de linha de comandos e informação de configuração em
+\fI/etc/adduser.conf\fP. Eles são frontends mais específicos de Debian para os
+programas \fBuseradd,\fP \fBgroupadd\fP e \fBusermod\fP, que são mais agnósticos à
+distribuição. O \fBadduser\fP e o \fBaddgroup\fP por predefinição escolhem valores
+UID e GID respeitantes da política Debian, criam um directório home com o
+esqueleto da configuração, executam um script personalizado, e têm outras
+funcionalidades.
+.PP
+\fBadduser\fP e \fBaddgroup\fP destinam\-se a ser uma camada política, facilitando
+aos responsáveis dos pacotes e administradores locais criarem contas de
+sistema locais no modo que Debian espera que sejam criadas, removendo a
+obrigação de adaptar às prováveis alterações das especificações da política
+Debian. O \fBadduser \-\-system\fP tem atenção especial de apenas ser preciso uma
+única chamada nos scripts de maintainer do pacote sem nenhuns envelopes
+condicionais, supressões de erros ou outras geringonças.
+.PP
+O \fBadduser\fP honra a distinção entre \fIutilizadores e grupos de sistema dinamicamente alocados\fP e \fIcontas de utilizador dinamicamente alocadas\fP que
+está documentada na Política Debian, Capítulo 9.2.2.
+.PP
+Para uma lista completa e explicação de todas as opções, veja a secção
+OPÇÕES.
+.PP
+\fBadduser\fP e \fBaddgroup\fP podem ser executados em um de cinco modos:
+.SS "Adiciona um utilizador regular (não\-sistema)"
+Se chamado com um argumento não\-opção e sem as opções \fB\-\-system\fP ou
+\fB\-\-group\fP, o \fBadduser\fP irá adicionar um utilizador regular, o que
+significa uma \fIconta de utilizador alocada dinamicamente\fP no sentido da
+Política Debian. Isto é normalmente referido no \fBadduser\fP como um
+\fIutilizador não\-sistema\fP.
+.PP
+\fBadduser\fP irá escolher o primeiro UID disponível dentro do alcance
+especificado por \fBFIRST_UID\fP e \fBLAST_UID\fP no ficheiro de configuração. O
+alcance pode ser sobreposto com as opções \fB\-\-firstuid\fP e
+\fB\-\-lastuid\fP. Finalmente, o UID pode definido total manualmente com a opção
+\fB\-\-uid\fP.
+.PP
+Por predefinição, a cada utilizador é dado um grupo correspondente com o
+mesmo nome. Isto é geralmente chamado \fIUsergroups\fP e permite que
+directórios escritos por grupo sejam facilmente mantidos ao colocar os
+utilizadores apropriados no novo grupo, definido o bit set\-group\-ID no
+directório, e assegurando que todos os utilizadores usam uma umask de 002.
+.PP
+Para um usergroup, o \fBadduser\fP irá escolher o primeiro GID disponível
+dentro do alcance especificado por \fBFIRST_GID\fP e \fBLAST_GID\fP no ficheiro de
+configuração. O alcance pode ser sobreposto pelas opções \fB\-\-firstgid\fP e
+\fB\-\-lastgid\fP. Finalmente. o GID pode ser definido totalmente manual com a
+opção \fB\-\-gid\fP.
+.PP
+A interação entre \fBUSERS_GID\fP, \fBUSERS_GROUP\fP, e \fBUSERGROUPS\fP está
+explicada em detalhe em \fBadduser.conf\fP(5).
+.PP
+Os grupo primário dos novos utilizadores também pode ser sobreposto a partir
+da linha de comandos com as opções \fB\-\-gid\fP ou \fB\-\-ingroup\fP para definir o
+grupo pelo id ou pelo nome respetivamente. Também, os utilizadores podem ser
+adicionados a um ou mais grupos suplementares definidos como \fBEXTRA_GROUPS\fP
+seja definido \fBADD_EXTRA_GROUPS\fP para 1 no ficheiro de configuração, ou
+passando \fB\-\-add\-extra\-groups\fP na linha de comandos.
+.PP
+O \fBadduser\fP irá copiar ficheiros de \fI/etc/skel\fP para o directório home e
+perguntar pelo comentário e uma palavra passe se essas funções não estiverem
+desligadas / sobrepostas a partir da linha de comandos.
+.PP
+UID, comentário, directório home e shell podem ser pre\-determinados com a
+opção \fBUID_POOL\fP e \fBGID_POOL\fP, documentada em \fBadduser.conf\fP(5).
+
+To set up an encrypted home directory for the new user, add the
+\fB\-\-encrypt\-home\fP option.  For more information, refer to the \-b option of
+\fBecryptfs\-setup\-private(1).\fP
+
+.SS "Adicionar um utilizador de sistema"
+Se chamado com um argumento não\-opção e a opção \fB\-\-system\fP, o \fBadduser\fP
+irá adicionar um \fIutilizador de sistema alocado dinamicamente,\fP muitas
+vezes abreviado como \fIutilizador de sistema\fP no contexto do pacote
+\fBadduser\fP.
+.PP
+\fBadduser\fP irá escolher o primeiro UID disponível dentro do alcance
+especificado por \fBFIRST_SYSTEM_UID\fP e \fBLAST_SYSTEM_UID\fP no ficheiro de
+configuração. Isto pode ser sobreposto com a opção \fB\-\-uid\fP.
+.PP
+Por predefinição, os utilizadores do sistema são atribuídos ao grupo
+primário \fBnogroup\fP. Para atribuir o novo utilizador de sistema num grupo já
+existente como grupo primário, use as opções \fB\-\-gid\fP ou \fB\-\-ingroup\fP. Se a
+opção \fB\-\-group\fP for dada e um grupo de nome idêntico ainda não existir,
+este é criado com o mesmo ID.
+.PP
+Se não for especificado um directório home, o directório home predefinido
+para um novo utilizador é \fI\%/nonexistent\fP.  Este directório nunca deverá
+existir em nenhum sistema Debian, e o \fBadduser\fP nunca irá cria\-lo
+automaticamente.
+.PP
+Se um directório home for especificado com a opção \fB\-\-home\fP, e o directório
+já existir (por exemplo, se o pacote vier com ficheiros nesse directório), o
+\fBadduser\fP em silêncio não define o dono do directório para o novo
+utilizador criado. Definir o dono pode sobrepor uma decisão do administrador
+local, e reportar o facto iria quebrar o silêncio do \fBadduser\fP durante a
+instalação do pacote.  Se você usar \fBadduser \-\-home\fP nos seus scripts de
+maintainer do pacote, você pode querer emitir um \fBchown\fP recursivo
+explícito para o directório home após a chamada ao \fBadduser\fP.
+.PP
+A menos que uma shell seja explicitamente definida com a opção \fB\-\-shell\fP, o
+novo utilizador de sistema irá ter a shell definida para
+\fI/usr/sbin/nologin\fP.  \fBadduser \-\-system\fP não define uma palavra passe para
+a nova conta. Os ficheiros de configuração esqueleto não são copiados.
+.PP
+As outras opções irão comportar\-se como para a criação de um utilizador
+regular. Os ficheiros referenciados por \fBUID_POOL\fP e \fBGID_POOL\fP são também
+honrados.
+
+.SS "Adiciona um grupo"
+Se o \fBadduser\fP for chamado com a opção \fB\-\-group\fP e sem a opção
+\fB\-\-system\fP, ou se \fBaddgroup\fP for chamado respetivamente, será adicionado
+um grupo de utilizadores.
+.PP
+Um \fIutilizador de sistema alocado dinamicamente,\fP muitas vezes abreviado
+como \fIutilizador de sistema\fP no contexto do pacote \fBadduser\fP, será criado
+se \fBadduser \-\-group\fP ou \fBaddgroup\fP for chamado com a opção \fB\-\-system\fP.
+.PP
+Será escolhido um GID do alcance respetivo especificado para GIDs no
+ficheiro de configuração  (\fBFIRST_GID\fP, \fBLAST_GID\fP, \fBFIRST_SYSTEM_GID\fP,
+\fBLAST_SYSTEM_GID\fP). Para sobrepor esse mecanismo, você pode fornecer o GID
+usando a opção \fB\-\-gid\fP.
+.PP
+Para grupos não\-sistema, o alcance especificado no ficheiro de configuração
+pode ser sobreposto com as opções \fB\-\-firstgid\fP e \fB\-\-lastgid\fP.
+.PP
+O grupo é criado sem nenhum membro.
+
+.SS "Adicionar um utilizador existente a um grupo existente"
+Se chamado com dois argumentos não\-opção, \fBadduser\fP irá adicionar um
+utilizador existente a um grupo existente.
+
+.SH OPÇÕES
+Os diferentes modos do \fBadduser\fP permitem diferentes opções. Se nenhum modo
+válido estiver listado para uma opção, ela é aceite em todos os modos.
+.PP
+Versões curtas para certas opções podem existir por razões históricas. Elas
+vão continuar a ser suportadas, mas estão removidas da documentação. Os são
+aconselhados a migrarem para a versão longa das opções.
+.TP 
+\fB\-\-add\-extra\-groups\fP
+Adiciona novo utilizador aos grupos extra definidos na definição
+\fBEXTRA_GROUPS\fP dos ficheiros de configuração. A maneira antiga
+\fB\-\-add_extra_groups\fP está descontinuada e será suportada apenas no bookworm
+Debian. Modos válidos: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-allow\-all\-names\fP
+Permite qualquer nome de utilizador e grupo que seja suportado pelo
+\fBuseradd\fP(8) subjacente, Veja NOMES VÁLIDOS em baixo.  Modos válidos:
+\fBadduser\fP, \fBadduser \-\-system\fP, \fBaddgroup\fP, \fBaddgroup \-\-system\fP.
+.TP 
+\fB\-\-allow\-bad\-names\fP
+Desativa as verificações \fBNAME_REGEX\fP e \fBSYS_NAME_REGEX\fP de nomes. Apenas
+é aplicada uma verificação mais fraca para validade do nome. Veja NOMES
+VÁLIDOS em baixo.  Modos válidos: \fBadduser\fP, \fBadduser \-\-system\fP,
+\fBaddgroup\fP, \fBaddgroup \-\-system\fP.
+.TP 
+\fB\-\-comment\fP\fI comentário\fP
+Define o campo de comentário para a nova entrada gerada. O \fBadduser\fP não
+irá pedir a informação se esta opção for dada. Este campo é também conhecido
+sob o nome campo GECOS e contém informação que é usada pelo comando
+\fBfinger\fP(1). Isto já foi a opção \fB\-\-gecos\fP, a qual está descontinuada e
+será removida após o Debian bookworm.  Modos válidos: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-conf\fP\fI ficheiro\fP
+Usa \fIficheiro\fP em vez de \fI/etc/adduser.conf\fP.  Várias opções \fB\-\-conf\fP
+podem ser dadas.
+.TP 
+\fB\-\-debug\fP
+Sinónimo para \fB\-\-stdoutmsglevel=debug.\fP Descontinuado.
+.TP 
+\fB\-\-disabled\-login\fP
+.TQ
+\fB\-\-disabled\-password\fP
+Não corre o \fBpasswd\fP(1) para definir uma palavra\-passe. Na maioria das
+situações, os logins são ainda possíveis (por exemplo usando chaves SSH ou
+através do PAM)  por razões que ultrapassam o escopo do \fBadduser\fP.
+\fB\-\-disabled\-login\fP irá adicionalmente definir a shell para
+\fI/usr/sbin/nologin\fP.  Modo válido: \fBadduser\fP.
+.TP 
+\fB\-\-firstuid\fP\fI ID\fP
+.TQ
+\fB\-\-lastuid\fP\fI ID\fP
+.TQ
+\fB\-\-firstgid\fP\fI ID\fP
+.TQ
+\fB\-\-lastgid\fP\fI ID\fP
+Sobrepõe o primeiro UID / último UID / primeiro GID / último GID no alcance
+em que o uid é escolhido a partir de (\fBFIRST_UID\fP, \fBLAST_UID\fP,
+\fBFIRST_GID\fP e \fBLAST_GID\fP, \fBFIRST_SYSTEM_UID\fP, \fBLAST_SYSTEM_UID\fP,
+\fBFIRST_SYSTEM_GID\fP e \fBLAST_SYSTEM_GID\fP no ficheiro de configuração).  Se
+um grupo for criado como um usergroup, \fB\-\-firstgid\fP e \fB\-\-lastgid\fP são
+ignorados. O grupo obtém o mesmo ID que o utilizador. Modos válidos:
+\fBadduser\fP, \fBadduser \-\-system\fP, para \fB\-\-firstgid\fP e \fB\-\-lastgid\fP também
+\fBaddgroup\fP.
+.TP 
+\fB\-\-force\-badname\fP
+.TQ
+\fB\-\-allow\-badname\fP
+Estes são formatos descontinuados de \fB\-\-allow\-bad\-names\fP. Serão removidos
+durante o ciclo de lançamento de lançamento de Debian 13.
+.TP 
+\fB\-\-extrausers\fP
+Uses extra users as the database.
+.TP 
+\fB\-\-gid\fP\fI GID \fP
+Quando se cria um grupo, esta opção define o número ID de grupo do novo
+grupo para \fIGID\fP.  Quando se cria um utilizador, esta opção define o número
+ID de grupo primário do novo utilizador para \fIGID\fP.  Modos válidos:
+\fBadduser\fP, \fBadduser \-\-system\fP, \fBaddgroup\fP, \fBaddgroup \-\-system\fP.
+.TP 
+\fB\-\-group\fP
+Usar esta opção em \fBadduser \-\-system\fP indica que o novo utilizador deve
+obter um grupo de nome idêntico como seu grupo primário. Se esse grupo de
+nome idêntico não existir já, ele é criado. Se não combinada com
+\fB\-\-system\fP, é criado um grupo com o nome fornecido. A última é a acção
+predefinida se o programa for invocado como \fBaddgroup\fP.  Modos válidos:
+\fBadduser \-\-system\fP, \fBaddgroup\fP, \fBaddgroup \-\-system\fP.
+.TP 
+\fB\-\-help\fP
+Mostra instruções breves.
+.TP 
+\fB\-\-home\fP\fI dir\fP
+Usa \fIdir\fP como o directório home do utilizador, em vez da predefinição
+especificada pelo ficheiro de configuração (ou \fI/nonexistent\fP se for usado
+\fBadduser \-\-system\fP). Se o directório não existir, ele é criado. Modos
+válidos: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-ingroup\fP\fI GRUPO\fP
+Quando se cria um utilizador, esta opção define o número ID do grupo
+primário do novo utilizador para o GID do grupo nomeado. Ao contrário da
+opção \fB\-\-gid\fP, o grupo é especificado aqui pelo nome em vez de pelo número
+ID numérico. O grupo tem de já existir. Modos válidos: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-lastuid\fP\fI ID\fP
+.TQ
+\fB\-\-lastgid\fP\fI ID\fP
+Sobrepõe o último UID / último GID.  Veja \fB\-\-firstuid\fP.
+.TP 
+\fB\-\-no\-create\-home\fP
+Não cria o directório home para o novo utilizador. Note que o nome de
+caminho para o directório home do novo utilizador irá ainda ser inserido no
+campo apropriado no ficheiro \fI\%/etc/passwd\fP. O uso desta opção não implica
+que este campo deva estar vazio. Em vez disso, indica ao \fB\%adduser\fP que
+algum outro mecanismo será responsável por inicializar o directório home do
+novo utilizador.  Modos válidos: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-quiet\fP
+Sinónimo de \fB\-\-stdoutmsglevel=warn.\fP Descontinuado.
+.TP 
+\fB\-\-shell\fP\fI shell\fP
+Usa \fIshell\fP como a shell de login do utilizador, em vez da predefinição
+especificada pelo ficheiro de configuração (ou \fI/usr/sbin/nologin\fP se
+\fBadduser \-\-system\fP for usado).  Modos válidos: \fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-system\fP
+Normalmente, o \fBadduser\fP cria \fIcontas de utilizador e grupos alocados dinamicamente\fP como definido em Política Debian, Capítulo 9.2.2.  Com esta
+opção, o \fBadduser\fP cria uma \fIconta de utilizador e grupo alocada dinamicamente\fP e muda o seu modo respetivamente. Modos válidos: \fBadduser\fP,
+\fBaddgroup\fP.
+.TP 
+\fB\-\-uid\fP\fI ID\fP
+Força o novo id de utilizador a ser o número fornecido. O \fBadduser\fP irá
+falhar se o id de utilizador já estiver atribuído. Modos válidos:
+\fBadduser\fP, \fBadduser \-\-system\fP.
+.TP 
+\fB\-\-verbose\fP
+Sinónimo de \fB\-\-stdoutmsglevel=info.\fP Descontinuado.
+.TP 
+\fB\-\-stdoutmsglevel\fP\fI prio\fP
+.TQ
+\fB\-\-stderrmsglevel\fP\fI prio\fP
+.TQ
+\fB\-\-logmsglevel\fP\fI prio\fP
+Prioridade mínima para mensagens registadas no syslog/journal e a consola,
+respetivamente. Valores são \fItrace\fP, \fIdebug\fP, \fIinfo\fP, \fIwarn\fP, \fIerr\fP, e
+\fIfatal\fP. As mensagens com a prioridade definida aqui ou superior são
+escritas na média respectiva. As mensagens escritas no stderr não são
+repetidas no stdout. Isso permite ao administrador local controla a
+tagarelice do \fBadduser\fP na consola e no registo independentemente, deixando
+a informação provavelmente confusa para si enquanto deixa informação útil no
+registo.  stdoutmsglevel, stderrmsglevel, e logmsglevel predefinidos para
+aviso, aviso, informação, respetivamente.
+.TP 
+\fB\-v\fP , \fB\-\-version\fP
+Mostra informação de versão e copyright.
+
+.SH "NOMES VÁLIDOS"
+Historicamente, o \fBadduser\fP(8) e o \fBaddgroup\fP(8) reforçou conformidade com
+IEEE Std 1003.1\-2001, o qual permite que apenas os seguintes caracteres
+apareçam nos nomes de grupos e utilizadores: letras, dígitos, underscores,
+pontos, e sinais (@) e traços. O nome não pode começar com um traço ou @. O
+sinal "$" é permitido no final dos nomes de utilizador para permitir as
+contas de máquina Samba típicas.
+.PP
+As definições predefinidas para \fBNAME_REGEX\fP e \fBSYS_NAME_REGEX\fP permitem
+que nomes de utilizador contenham letras e dígitos, mais traço (\-) e
+underscore (_); o nome tem de começar com uma letra (ou um underscore para
+utilizadores de sistema).
+.PP
+A política menos restritiva, disponível usando a opção \fB\-\-allow\-all\-names\fP,
+simplesmente faz as mesmas verificações que o \fBuseradd\fP(8), Por favor note
+que as verificações do useradd passaram a ser um pouco mais restritivas em
+Debian 13.
+.PP
+Alterar o comportamento predefinido pode ser usado para criar nomes confusos
+ou que conduzam a erros; cuidado ao usar.
+
+.SH REGISTRO
+
+O \fBAdduser\fP usa registos extensivos e configuráveis para afinar os seus
+detalhes às necessidades do administrador do sistema.
+
+Cada mensagem que o \fBadduser\fP escreve tem um valor de prioridade atribuído
+pelos autores.  Esta prioridade não pode ser alterada durante a execução.
+Os valores de prioridade disponíveis são \fBcrit\fP, \fBerror\fP, \fBwarning\fP,
+\fBinfo\fP, \fBdebug\fP, e \fBtrace\fP.
+
+Se você descobrir que uma mensagem tem prioridade errada, por favor preencha
+em relatório de bug.
+
+De cada vez que uma mensagem é gerada, o código decide onde escrever a
+mensagem para a saída standard, erro standard, ou syslog.  Isto é controlado
+principalmente e independentemente pelas definições de configuração
+\fBSTDOUTMSGLEVEL\fP, \fBSTDERRMSGLEVEL\fP, e \fBLOGMSGLEVEL\fP.  Para objectivos de
+teste, estas definições podem ser sobrepostas na linha de comandos.
+
+Apenas mensagens com uma prioridade igual ou maior que o nível da mensagem
+respetiva são registados no meio de saída respetivo.  Uma mensagem que foi
+escrita no erro standard não é escrita uma segunda vez na saída standard.
+
+.SH "VALORES DE SAÍDA"
+
+.TP 
+\fB0\fP
+Sucesso: O utilizador ou grupo existe como especificado. Isto pode ter 2
+causas: O utilizador ou grupo foi criado por esta chamada ao \fBadduser\fP ou o
+utilizador ou grupo já estava presente no sistema como especificado antes do
+\fBadduser\fP ser invocado. Se for invocado \fBadduser \-\-system\fP para um
+utilizador já existente com os atributos requeridos ou compatíveis, irá
+também retornar 0.
+.TP 
+\fB11\fP
+O objecto que foi pedido ao \fBadduser\fP para criar já existe.
+.TP 
+\fB12\fP
+O objecto que foi pedido ao \fBadduser\fP ou \fBdeluser\fP para operar não existe.
+.TP 
+\fB13\fP
+O objecto que foi pedido ao \fBadduser\fP ou \fBdeluser\fP para operar não tem as
+propriedades que são requeridas para completar a operação: Um utilizador (um
+grupo) que foi requerido para ser criado como um utilizador (grupo) de
+sistema já existe e não é um utilizador (grupo) de sistema, ou um utilizador
+(grupo) que foi requerido para ser criado com certo UID (GID) já existe e
+tem um UID (GID) diferente, ou um utilizador (grupo) de sistema que foi
+requerido para ser apagado existe, mas não é um utilizador (grupo) de
+sistema.
+.TP 
+\fB21\fP
+O UID (GID) que foi explicitamente requerido para o novo utilizador (grupo)
+já está a ser usado.
+.TP 
+\fB22\fP
+Não existe nenhum UID (GID) disponível na gama pedida.
+.TP 
+\fB23\fP
+Não existe nenhum grupo com o GID requerido para o grupo primário para o
+novo utilizador.
+.TP 
+\fB31\fP
+O nome escolhido para o novo utilizador ou novo grupo não está em
+conformidade com as regras de nomeação selecionadas.
+.TP 
+\fB32\fP
+O directório home para um novo utilizador tem de ser um caminho absoluto.
+.TP 
+\fB33\fP
+useradd retornou código de saída 19 "invalid user or group name".  Isto
+significa que o nome de utilizador ou grupo escolhido está em conformidade
+com as restrições do useradd e o adduser não pode criar o utilizador.
+.TP 
+\fB41\fP
+O grupo que foi requerido para ser apagado não está vazio.
+.TP 
+\fB42\fP
+O utilizador que foi requerido para ser removido de um grupo não é membro
+desse grupo em primeiro lugar.
+.TP 
+\fB43\fP
+Não é possível remover um utilizador do seu grupo principal, ou nenhum grupo
+primário selecionado para um novo utilizador por nenhum método.
+.TP 
+\fB51\fP
+Detectado número ou ordem de parâmetros de linha de comandos incorreta.
+.TP 
+\fB52\fP
+Opções incompatíveis definidas no ficheiro de configuração.
+.TP 
+\fB53\fP
+Detetadas opções de linha de comandos incompatíveis mutuamente.
+.TP 
+\fB54\fP
+\fBadduser\fP e \fBdeluser\fP invocados como não\-root e assim não podem funcionar.
+.TP 
+\fB55\fP
+O \fBdeluser\fP irá recusar apagar a conta do \fIroot\fP.
+.TP 
+\fB56\fP
+Foi requerida uma função que precisa de mais pacotes instalados. Veja
+Recommends: e Suggests: do pacote adduser.
+.TP 
+\fB61\fP
+O \fBadduser\fP foi abortado por alguma razão e tentou reverter as alterações
+que foram feitas durante a execução.
+.TP 
+\fB62\fP
+Erro interno do \fBadduser\fP. Isto não devia ter acontecido. Por favor tente
+reproduzir o problema e preencha um relatório de bug.
+.TP 
+\fB71\fP
+Erro ao criar e manusear a tranca.
+.TP 
+\fB72\fP
+Erro ao aceder a ficheiro(s) de configuração.
+.TP 
+\fB73\fP
+Erro ao aceder a um ficheiro de pool.
+.TP 
+\fB74\fP
+Erro a ler um ficheiro pool, erro de sintaxe no ficheiro.
+.TP 
+\fB75\fP
+Erro ao aceder a ficheiros auxiliares.
+.TP 
+\fB81\fP
+Não pôde ser encontrado um executável preciso pelo \fBadduser\fP ou
+\fBdeluser\fP. Verifique a sua instalação e dependências.
+.TP 
+\fB82\fP
+A execução de um comando externo retornou algum erro inesperado.
+.TP 
+\fB83\fP
+Um comando externo foi terminado com um sinal.
+.TP 
+\fB84\fP
+Uma chamada de sistema (syscall) terminou com um erro inesperado.
+.PP
+Ou por muitas razões ainda não documentadas que são então escritas na
+consola. Você deve considerar aumentar o nível de registro para tornar o
+\fBadduser\fP mais detalhado.
+
+.SH SEGURANÇA
+O \fBadduser\fP precisa de privilégios de root e oferece via opção de linha de
+comandos \fB\-\-conf\fP a utilização de diferentes ficheiros de configuração. Não
+use o \fBsudo\fP(8) ou ferramentas semelhantes para dar privilégios parciais ao
+\fBadduser\fP com parâmetros de linha de comandos restritos. Isto é fácil de
+contornar e pode permitir que utilizadores criem contas arbitrárias. Se você
+deseja isto, consider escrever o seu próprio script envelope e dê
+privilégios para executar esse script.
+
+.SH FICHEIROS
+.TP 
+\fI/etc/adduser.conf\fP
+Ficheiro de configuração predefinido para \fBadduser\fP(8) e \fBaddgroup\fP(8)
+.TP 
+\fI/usr/local/sbin/adduser.local\fP
+Adições personalizadas opcionais, veja \fBadduser.local\fP(8)
+.
+
+.SH NOTAS
+Infelizmente, o termo \fIconta de sistema\fP sofre de duplo uso em Debian. Em
+ambos significa uma conta para o sistema Debian real, distinguindo\-se ele
+próprio de uma \fIconta de aplicação\fP a qual pode existir na base de dados de
+utilizador de alguma aplicação que corre em Debian. Uma \fIconta de sistema\fP
+nesta definição tem o potencial de abrir sessão no sistema real, tem um UID,
+pode ser membro em grupos de sistema, pode possuir ficheiros e processos. A
+Política Debian, ao contrário, no seu Capítulo 9.2.2, faz uma distinção de
+\fIutilizadores e grupos de sistema alocados dinamicamente\fP e \fIcontas de utilizador alocadas dinamicamente\fP, significando am ambos os casos
+instâncias especiais de \fIcontas de sistema\fP. Tem de se tomar cuidado para
+não se confundir esta terminologia. Como \fBadduser\fP e \fBdeluser\fP(8) nunca se
+dirigem a \fIcontas de aplicação\fP e tudo neste pacote se refere aqui a
+\fIcontas de sistema\fP, o uso dos termos \fIconta de utilizador\fP e \fIconta de sistema\fP não é realmente ambígua no contexto deste pacote. Para clarificar,
+este documento usa a definição \fIconta ou grupo de sistema local\fP se for
+necessária a distinção para \fIcontas de aplicação\fP ou contas geridas num
+serviço de directório.
+.PP
+O \fBadduser\fP costumava ter a visão de ser o frontend universal para os
+vários serviços de directório para se criar e apagar contas de sistema e
+regulares em Debian desde os anos 1990. Esta visão foi abandonada a partir
+de 2022. A razão por trás disto inclui: que na prática, um pequeno sistema
+servidor não vai ter acesso de escrita a um serviço de directório de
+toda\-a\-empresa de qualquer modo, que os pacotes instalados localmente são
+difíceis de gerir com contas de sistema controladas centralmente, que
+serviços de directório de empresas têm os seus próprios processos de gestão
+de qualquer modo e que o poder\-pessoal da equipa do \fBadduser\fP dificilmente
+vai ter força suficiente para escrever e manter suporte para a abundância de
+serviços de directório que precisam de suporte.
+.PP
+O \fBadduser\fP irá contrair ele próprio a ser uma camada política para a
+gestão das contas de sistema locais, usando as ferramentas do pacote
+\fBpasswd\fP para o trabalho real.
+
+.SH BUGS
+O uso inconsistente de terminologia em redor do termo \fIconta de sistema\fP em
+documentos e código é um bug. Por favor reporte isto e permita\-nos melhorar
+a nossa documentação.
+.PP
+O \fBadduser\fP tem atenção especial em ser utilizável diretamente em scripts
+de maintainer Debian sem envelopes condicionais, supressão de erros e outras
+geringonças. A única coisa que o maintainer do pacote deve precisar
+codificar é uma verificação pela presença do executável no script postrm. O
+maintainers do \fBadduser\fP consideram a necessidade de geringonças adicionais
+um bug e encorajam os seus colegas maintainers de pacotes Debian a reportar
+bugs contra o pacote \fBadduser\fP nestes casos.
+
+.SH "VEJA TAMBÉM"
+\fBadduser.conf\fP(5), \fBdeluser\fP(8), \fBgroupadd\fP(8), \fBuseradd\fP(8),
+\fBusermod\fP(8), \fB/usr/share/doc/base\-passwd/users\-and\-groups.html\fP em
+qualquer sistema Debian, Política Debian 9.2.2, RFC8264 "Estrutura PRECIS:
+Preparação, Reforço, e Comparação se Strings Internacionalizadas em
+Protocolos de Aplicações", RFC8265 "PRECIS Representando Nomes de
+Utilizadores e Palavras Passe", https://wiki.debian.org/UserAccounts.

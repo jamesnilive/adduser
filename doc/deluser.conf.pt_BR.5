@@ -1,0 +1,83 @@
+.\" Copyright: 1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2007 Jörg Hoh <joerg@joerghoh.de>
+.\"            2011 Stephen Gran <sgran@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public Lisence version 2
+.\" or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH DELUSER.CONF 5 "" "Debian GNU/Linux" 
+.SH NOME
+/etc/deluser.conf \- arquivo de configuração para \fBdeluser\fP(8) e
+\fBdelgroup\fP(8).
+.SH DESCRIÇÃO
+O arquivo \fI/etc/deluser.conf\fP contém padrões para os programas
+\fBdeluser\fP(8) e \fBdelgroup\fP(8). Cada linha contém um único par de valores no
+formato \fIopção\fP = \fIvalor\fP. Aspas simples ou duplas são permitidas ao redor
+do valor, assim como espaços em branco ao redor do sinal de igual. As linhas
+de comentário devem ter um sinal de cerquilha (#) na primeira coluna.
+.PP
+\fBdeluser\fP(8) e \fBdelgroup\fP(8) também lêem \fI/etc/adduser.conf\fP, consulte
+\fBadduser.conf\fP(5); as configurações em \fIdeluser.conf\fP podem sobrescrever
+as configurações feitas em \fIadduser.conf\fP.
+.PP
+As opções de configuração válidas são:
+.TP 
+\fBBACKUP\fP
+Se \fBREMOVE_HOME\fP ou \fBREMOVE_ALL_FILES\fP estiver ativado, todos os arquivos
+serão copiados antes de serem removidos. O arquivo de backup criado é
+padronizado como \fInome\-do\-usuário.tar(.gz|.bz2)\fP no diretório especificado
+pela opção \fBBACKUP_TO\fP. O método de compactação é escolhido de acordo com o
+melhor disponível. Os valores podem ser 0 ou 1. O padrão é \fI0\fP.
+.TP 
+\fBBACKUP_SUFFIX\fP
+Selecione o algoritmo de compactação para um backup do diretório
+inicial. Pode ser definido para qualquer sufixo reconhecido por \fBtar \-\-auto\-compress\fP. O padrão é \fI.gz\fP.
+.TP 
+\fBBACKUP_TO\fP
+Se \fBBACKUP\fP é ativado, \fBBACKUP_TO\fP especifica o diretório no qual o backup
+é escrito. O padrão é o diretório atual.
+.TP 
+\fBEXCLUDE_FSTYPES\fP
+Uma expressão regular que descreve todos os tipos de sistema de arquivos que
+devem ser excluídos ao procurar arquivos de um usuário a serem excluídos. O
+padrão é "(proc|sysfs|usbfs|devtmpfs|devpts|afs)".
+.TP 
+\fBNO_DEL_PATHS\fP
+Uma lista de expressões regulares, separadas por espaço. Todos os arquivos a
+serem excluídos durante a exclusão do diretório home ou arquivos de
+propriedade do usuário em outro lugar são verificados em relação a cada uma
+dessas expressões regulares. Se uma correspondência for detectada, o arquivo
+não será excluído. O padrão é uma lista de diretórios do sistema, deixando
+apenas \fI/home\fP. Portanto, apenas os arquivos abaixo de \fI/home\fP
+pertencentes a esse usuário específico serão excluídos.
+.TP 
+\fBONLY_IF_EMPTY\fP
+Exclui um grupo apenas se não houver usuários pertencentes a esse grupo. O
+padrão é 0.
+.TP 
+\fBREMOVE_ALL_FILES\fP
+Remove todos os arquivos do sistema pertencentes ao usuário a ser
+removido. Se esta opção estiver ativada, \fBREMOVE_HOME\fP não tem efeito. Os
+valores podem ser 0 ou 1. O padrão é \fI0\fP.
+.TP 
+\fBREMOVE_HOME\fP
+Remove o diretório home e o conjunto de arquivos de e\-mail do usuário a ser
+removido. O valor pode ser 0 (não excluir) ou 1 (excluir). O padrão é \fI0\fP.
+
+.SH ARQUIVOS
+\fI/etc/deluser.conf\fP
+.SH "CONSULTE TAMBÉM"
+\fBadduser.conf\fP(5), \fBdelgroup\fP(8), \fBdeluser\fP(8)
+.SH "TRADUÇÃO"
+Philipe Gaspar (philipegaspar@terra.com.br), 2003.
+Felipe Augusto van de Wiel (faw) <felipe@cathedrallabs.org>, 2005-2006.
+Paulo Henrique de Lima Santana (phls) <phls@debian.org>, 2025.

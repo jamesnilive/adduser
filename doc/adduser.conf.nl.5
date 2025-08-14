@@ -1,0 +1,224 @@
+.\" Copyright: 1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2008 Stephen Gran <sgran@debian.org>
+.\"            2007 Jörg Hoh <joerg@joerghoh.de>
+.\"            2016 Afif Elghraoui <afif@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public License version 2
+.\" or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH ADDUSER.CONF 5 "" "Debian GNU/Linux" 
+.SH NAAM
+/etc/adduser.conf \- configuratiebestand voor \fBadduser\fP(8)  en
+\fBaddgroup\fP(8)
+.SH BESCHRIJVING
+Het bestand \fI/etc/adduser.conf\fP bevat standaardinstellingen voor de
+programma's \fBadduser\fP(8), \fBaddgroup\fP(8), \fBdeluser\fP(8) en
+\fBdelgroup\fP(8). Elke regel bevat een waardepaar in de vorm \fIoptie\fP =
+\fIwaarde\fP. Dubbele of enkele aanhalingstekens rond de waarde zijn
+toegestaan, net als witruimte rond het gelijkteken. Commentaarregels moeten
+een hekje (#) hebben in de eerste kolom.
+.PP
+Geldige configuratieopties zijn:
+.TP 
+\fBSTDERRMSGLEVEL ,  STDOUTMSGLEVEL , en  LOGMSGLEVEL\fP
+Minimale prioriteit voor berichten die respectievelijk naar syslog/journal
+en de console worden gelogd. Zie \fBLOGGING\fP in adduser(8). Standaard is dit
+\fIwarn\fP voor STDOUTMSGLEVEL en STDERRMSGLEVEL en \fIinfo\fP voor LOGMSGLEVEL.
+.TP 
+\fBADD_EXTRA_GROUPS\fP
+Door dit op iets anders dan 0 in te stellen zal \fBadduser\fP nieuw aangemaakte
+niet\-systeemgebruikers toevoegen aan de lijst met groepen gedefinieerd door
+\fBEXTRA_GROUPS\fP (hieronder). Staat standaard ingesteld op \fI0\fP.
+.TP 
+\fBDIR_MODE\fP
+De toegangsrechtenmodus voor persoonlijke mappen van niet\-systeemgebruikers
+die door \fBadduser\fP(8) worden aangemaakt. Staat standaard ingesteld op
+\fI0700\fP. Houd er rekening mee dat er mogelijke configuraties zijn (zoals
+~/gebruiker webdiensten of bezorging van e\-mail in de persoonlijke map)
+waarvoor wijzigingen in de standaardinstelling nodig zijn. Zie ook
+\fBSYS_DIR_MODE\fP.
+.TP 
+\fBDHOME\fP
+De map waarin nieuwe persoonlijke mappen aangemaakt moeten worden. Staat
+standaard ingesteld op \fI/home\fP.
+.TP 
+\fBDSHELL\fP
+De login\-shell die gebruikt moet worden voor alle nieuwe gebruikers. Staat
+standaard ingesteld op \fI/bin/bash\fP.
+.TP 
+\fBEXTRA_GROUPS\fP
+Dit is de door spaties gescheiden lijst met groepen waaraan nieuwe
+niet\-systeemgebruikers worden toegevoegd. Staat standaard ingesteld op
+\fIusers\fP.
+.TP 
+\fBFIRST_SYSTEM_GID en LAST_SYSTEM_GID\fP
+een inclusief bereik van GID's specificeren waaruit GID's voor
+systeemgroepen dynamisch kunnen worden toegewezen. Staat standaard ingesteld
+op \fI100\fP \- \fI999\fP.
+.TP 
+\fBFIRST_GID en LAST_GID\fP
+een inclusief bereik van GID's specificeren waaruit GID's voor
+niet\-systeemgroepen dynamisch kunnen worden toegewezen. Staat standaard
+ingesteld op \fI1000\fP \- \fI59999\fP.
+.TP 
+\fBFIRST_SYSTEM_UID en LAST_SYSTEM_UID\fP
+een inclusief bereik van UID's specificeren waaruit UID's voor
+systeemgebruikers dynamisch kunnen worden toegewezen. Staat standaard
+ingesteld op \fI100\fP \- \fI999\fP. Houd er rekening mee dat systeemsoftware,
+zoals bij door het pakket \fIbase\-passwd\fP toegewezen gebruikers, ervan uit
+kan gaan dat UID's kleiner dan 100 niet zijn toegewezen.
+.TP 
+\fBFIRST_UID en LAST_UID\fP
+een inclusief bereik van UID's specificeren waaruit UID's voor
+niet\-systeemgebruikers dynamisch kunnen worden toegewezen. Staat standaard
+ingesteld op \fI1000\fP \- \fI59999\fP.
+.TP 
+\fBGID_POOL\fP
+Zie \fBUID_POOL\fP.
+.TP 
+\fBGROUPHOMES\fP
+Als dit ingesteld staat op \fIyes\fP, worden de persoonlijke mappen aangemaakt
+als \fI/home/groepsnaam/gebruiker\fP. Staat standaard ingesteld op \fIno\fP. Deze
+optie is \fBverouderd\fP en zal worden verwijderd.
+.TP 
+\fBLAST_SYSTEM_GID\fP
+.TQ
+\fBLAST_GID\fP
+.TQ
+\fBLAST_SYSTEM_UID\fP
+.TQ
+\fBLAST_UID\fP
+Zie de optievarianten \fBFIRST_\fP.
+.TP 
+\fBLETTERHOMES\fP
+Als dit ingesteld staat op \fIyes\fP, dan wordt onder de aangemaakte
+persoonlijke mappen een extra map ingevoegd, bestaande uit de eerste letter
+van de loginnaam. Bijvoorbeeld: \fI/home/g/gebruiker\fP. Staat standaard
+ingesteld op \fIno\fP. Deze optie is \fBverouderd\fP en zal worden verwijderd.
+.TP 
+\fBNAME_REGEX\fP
+Gebruikers\- en groepsnamen van niet\-systeemgebruikers worden getoetst aan
+deze reguliere expressie. Indien de naam niet overeenkomt met deze reguliere
+expressie, dan wordt het aanmaken van gebruiker en groep in \fBadduser\fP(8)
+geweigerd, tenzij \fB\-\-allow\-bad\-names\fP ingesteld staat. Wanneer
+\fB\-\-allow\-bad\-names\fP ingesteld staat, wordt een zwakkere controle
+uitgevoerd. Staat ingesteld op het meest conservatieve
+\fI^[a\-zA\-Z][a\-zA\-Z0\-9_\-]*\e$?$\fP. Zie \fBSYS_NAME_REGXEX\fP en \fBValid names\fP
+hieronder voor meer informatie.
+.TP 
+\fBQUOTAUSER\fP
+Indien dit ingesteld staat op een niet\-lege waarde, zullen quota van nieuwe
+gebruikers worden gekopieerd van deze gebruiker met behulp van \fIedquota \-p QUOTAUSER newuser\fP. Staat standaard ingesteld op \fIde lege tekenreeks\fP.
+.TP 
+\fBRESERVE_UID_POOL en RESERVE_GID_POOL\fP
+Bepaalt of de UID\- en GID\-waarden die in de poolbestanden worden vermeld,
+echt gereserveerd zijn. Zie UID EN GID POOLS in het onderdeel
+OPMERKINGEN. Staat ingesteld op \fIyes\fP.
+.TP 
+\fBSETGID_HOME\fP
+Als dit is ingesteld op \fIyes\fP, wordt in persoonlijke mappen van gebruikers
+met hun eigen groep (\fBUSERGROUPS\fP = yes) de set\-group\-ID bit
+ingesteld. Merk op dat deze functie \fBverouderd\fP is en zal worden verwijderd
+in een toekomstige versie van \fBadduser\fP(8). Gebruik in plaats daarvan
+\fBDIR_MODE\fP. Staat standaard ingesteld op \fIno\fP.
+.TP 
+\fBSKEL\fP
+De map van waaruit de skeletgebruikersconfiguratiebestanden worden
+gekopieerd. Staat standaard ingesteld op \fI/etc/skel\fP.
+.TP 
+\fBSKEL_IGNORE_REGEX\fP
+Bij het opvullen van de nieuw aangemaakte persoonlijke map van een
+niet\-systeemgebruiker, worden bestanden uit SKEL die overeenkomen met deze
+reguliere expressie niet gekopieerd. Staat standaard ingesteld op
+\fI(.(dpkg|ucf)\-(old|new|dist)$)\fP, de reguliere expressie die overeenkomt met
+bestanden die overblijven van niet\-samengevoegde configuratiebestanden.
+.TP 
+\fBSYS_DIR_MODE\fP
+De toegangsrechtenmodus voor de eigen mappen van systeemgebruikers die
+worden aangemaakt door \fBadduser\fP(8). Staat standaard ingesteld op
+\fI0755\fP. Merk op dat het wijzigen van de standaardpermissies voor
+systeemgebruikers ertoe kan leiden dat sommige pakketten zich onbetrouwbaar
+gaan gedragen, als het programma vertrouwt op de standaardinstelling. Zie
+ook \fBDIR_MODE\fP.
+.TP 
+\fBSYS_NAME_REGEX\fP
+Systeemgebruikers\- en groepsnamen worden getoetst aan deze reguliere
+expressie. Indien de naam niet overeenkomt met deze reguliere expressie,
+wordt in adduser het aanmaken van de systeemgebruiker en \-groep geweigerd
+tenzij \fB\-\-allow\-bad\-names\fP ingesteld staat. Wanneer \fB\-\-allow\-bad\-names\fP
+ingesteld werd, worden zwakkere controles uitgevoerd. Staat standaard
+ingesteld op het meest conservatieve \fI^[a\-zA\-Z_][a\-zA\-Z0\-9_\-]*\e$?$\fP.  Zie
+\fBNAME_REGEX\fP hierboven end \fBValid names\fP hieronder voor meer informatie.
+.TP 
+\fBUID_POOL en GID_POOL\fP
+een bestand of een map met UID\- en GID\-poolbestanden opgeven. Zie UID EN GID
+POOLS in het onderdeel OPMERKINGEN. Staan beide ingesteld op \fIempty\fP.
+.TP 
+\fBUSERGROUPS\fP
+Aangeven of elke aangemaakte niet\-systeem gebruiker zijn eigen groep mag
+gebruiken. Staat standaard ingesteld op \fIyes\fP.
+.TP 
+\fBUSERS_GID en USERS_GROUP\fP
+Definieert de groepsnaam of het GID van de groep waar alle nieuw aangemaakte
+niet\-systeemgebruikers in geplaatst worden. Als \fBUSERGROUPS\fP \fIyes\fP is,
+wordt de groep toegevoegd als een extra groep; als \fBUSERGROUPS\fP \fIno\fP is,
+zal het de primaire groep zijn. Als u niet wilt dat al uw gebruikers in één
+groep zitten, stel dan \fBUSERGROUPS\fP=\fIyes\fP in, laat \fBUSERS_GROUP\fP leeg en
+stel \fBUSERS_GID\fP in op "\-1". \fBUSERS_GROUP\fP staat standaard ingesteld op
+\fIusers\fP, dat GID 100 heeft op alle Debian\-systemen omdat dit statisch
+gedefinieerd is door het pakket \fIbase\-passwd\fP. Het is een configuratiefout
+om beide variabelen te definiëren, zelfs als de waarden consistent zijn.
+.SH OPMERKINGEN
+.SS "UID EN GID POOLS"
+Sommige installaties willen dat een niet\-systeemaccount vooraf
+geconfigureerde eigenschappen krijgt wanneer het wordt
+aangemaakt. Gewoonlijk wil de lokale beheerder ervoor zorgen dat zelfs
+zonder een registerdienst te gebruiken, een account of een groep met een
+bepaalde naam dezelfde numerieke UID/GID heeft op alle systemen waarop deze
+bestaat.
+.PP
+Om deze functie in te schakelen, definieert u de configuratievariabelen
+\fBUID_POOL\fP (voor gebruikersaccounts) en/of \fBGID_POOL\fP (voor groepen) in
+\fI/etc/adduser.conf\fP en installeert u de respectieve bestanden op de
+geconfigureerde plaatsen. De waarde is ofwel een bestand ofwel een map. In
+het laatste geval worden alle bestanden met de naam \fI*.conf\fP in die map in
+aanmerking genomen.
+.PP
+De bestandsindeling is vergelijkbaar met die van \fI/etc/passwd\fP:
+tekstregels, velden gescheiden door een dubbele punt. De waarden zijn
+gebruikersnaam/groepsnaam (verplicht), UID/GID (verplicht), commentaarveld
+(optioneel, alleen nuttig voor gebruikers\-ID's), persoonlijke map (idem),
+shell (idem).
+.PP
+Het is mogelijk hetzelfde bestand/dezelfde map te gebruiken voor \fBUID_POOL\fP
+en \fBGID_POOL\fP.
+.PP
+Als een account/groep wordt aangemaakt, zoekt \fBadduser\fP(8) in alle
+UID/GID\-poolbestanden naar een regel die overeenkomt met de naam van het
+nieuw aangemaakte account en gebruikt de daar gevonden gegevens om het
+nieuwe account te initialiseren in plaats van de standaardwaarden te
+gebruiken. Instellingen kunnen worden overschreven vanaf de commandoregel.
+.PP
+In de standaardconfiguratie worden UID\- en GID\-waarden die in de pool worden
+vermeld, gereserveerd en dus niet gebruikt door de normale UID\- en
+GID\-selectieprocessen. Dit is doorgaans wat u wilt. Met de
+configuratieopties \fBRESERVE_UID_POOL\fP en \fBRESERVE_GID_POOL\fP kunt u dit
+gedrag uitschakelen als u wilt dat gepoolde UID's en GID's door normale
+accounts worden gebruikt. Dit kan conflicten veroorzaken en ervoor zorgen
+dat uw pool\-UID's en GID's worden gebruikt door accounts die zich niet in de
+pool bevinden.
+
+.SH BESTANDEN
+\fI/etc/adduser.conf\fP
+.SH "ZIE OOK"
+\fBdeluser.conf\fP(5), \fBaddgroup\fP(8), \fBadduser\fP(8), \fBdelgroup\fP(8),
+\fBdeluser\fP(8)

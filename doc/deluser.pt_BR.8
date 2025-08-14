@@ -1,0 +1,277 @@
+.\" Copyright: 1994 Ian A. Murdock <imurdock@debian.org>
+.\"            1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            1997-1999 Guy Maor
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2009 Jörg Hoh <joerg@joerghoh.de>
+.\"            2011 Justin B Rye <jbr@edlug.org.uk>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021-2022 Jason Franklin <jason@oneway.dev>
+.\"
+.\" This is free software; see the GNU General Public License version
+.\" 2 or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH DELUSER 8 "" "Debian GNU/Linux" 
+.SH NOME
+deluser, delgroup \- remove um usuário ou grupo do sistema
+.SH SINOPSE
+.SY deluser
+.OP \-\-backup
+.OP \-\-backup\-suffix str
+.OP \-\-backup\-to dir
+.OP \-\-conf arquivo
+.OP \-\-debug
+.OP \-\-remove\-all\-files
+.OP \-\-remove\-home
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBusuário\fP
+.YS
+
+.SY deluser
+.OP \-\-system
+.OP \-\-backup
+.OP \-\-backup\-suffix str
+.OP \-\-backup\-to dir
+.OP \-\-conf arquivo
+.OP \-\-debug
+.OP \-\-remove\-all\-files
+.OP \-\-remove\-home
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBusuário\fP
+.YS
+
+.SY deluser
+\fB\-\-group\fP
+.OP \-\-conf arquivo
+.OP \-\-debug
+.OP \-\-only\-if\-empty
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgroup\fP
+.YS
+
+.SY delgroup
+.OP \-\-system
+.OP \-\-conf arquivo
+.OP \-\-debug
+.OP \-\-only\-if\-empty
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgroup\fP
+.YS
+
+.SY deluser
+.OP \-\-conf arquivo
+.OP \-\-debug
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBuser\fP \fBgroup\fP
+.YS
+
+.SY deluser
+\fB\-\-help\fP
+.YS
+.SY deluser
+\fB\-\-version\fP
+.YS
+.SH DESCRIÇÃO
+\fBdeluser\fP e \fBdelgroup\fP removem usuários e grupos do sistema de acordo com
+as opções na linha de comando e informações de configuração em
+\fI/etc/deluser.conf\fP e \fI/etc/adduser.conf\fP.
+.PP
+Eles são interfaces mais específicos do Debian para os programas \fBuserdel\fP
+e \fBgroupdel\fP, que são mais agnósticos de distribuição. \fBdeluser\fP e
+\fBdelgroup\fP podem remover o diretório home como opção ou até mesmo todos os
+arquivos no sistema de propriedade do usuário a serem removidos, executar um
+script personalizado e ter outros recursos.
+.PP
+Para obter uma lista completa e uma explicação de todas as opções, consulte
+a seção OPÇÕES.
+.PP
+\fBdeluser\fP e \fBdelgroup\fP podem ser executados em um dos três modos:
+
+.SS "Remover um usuário"
+Se chamado com um argumento sem opção e sem a opção \fB\-\-group\fP, \fBdeluser\fP
+removerá um usuário que não é do sistema.
+.PP
+Por padrão, \fBdeluser\fP removerá o usuário sem remover o diretório home, o
+conjunto de arquivos de e\-mail ou quaisquer outros arquivos no sistema de
+propriedade do usuário. A remoção do diretório home e do arquivo de e\-mail
+pode ser realizada usando a opção \fB\-\-remove\-home\fP.
+.PP
+A opção \fB\-\-remove\-all\-files\fP remove todos os arquivos do sistema
+pertencentes ao usuário. Observe que se você ativar ambas as opções
+\fB\-\-remove\-home\fP não terá nenhum efeito adicional porque todos os arquivos,
+incluindo o diretório home e o conjunto de arquivos de e\-mail, já estão
+cobertos pela opção \fB\-\-remove\-all\-files\fP.
+.PP
+Se você deseja fazer backup de todos os arquivos antes de excluí\-los, pode
+usar a opção \fB\-\-backup\fP que criará um arquivo
+\fInome\-do\-usuário.tar(.gz|.bz2)\fP no diretório especificado pela opção
+\fB\-\-backup\-to\fP.
+.PP
+Por padrão, o arquivo de backup é compactado com \fBgzip\fP(1). Para alterar
+isso, a opção \fB\-\-backup\-suffix\fP pode ser definida para qualquer sufixo
+suportado por \fBtar \-\-auto\-compress\fP.
+.PP
+\fBdeluser\fP se recusará a remover a conta root.
+.PP
+Se a opção \fB\-\-system\fP for fornecida na linha de comando, a operação de
+exclusão será realmente executada apenas se o usuário for um usuário de
+sistema. Isso evita a exclusão acidental de usuários que não são de
+sistema. Além disso, se o usuário não existir, nenhum valor de erro será
+retornado. Os scripts do mantenedor do pacote Debian podem usar este
+sinalizador para remover usuários ou grupos de sistema, ignorando o caso em
+que a remoção já ocorreu.
+
+.SS "Remover um grupo"
+Se \fBdeluser\fP for chamado com a opção \fB\-\-group\fP, ou \fBdelgroup\fP for
+chamado, um grupo será removido. O grupo principal de um usuário existente
+não pode ser removido. Se a opção \fB\-\-only\-if\-empty\fP for fornecida, o grupo
+não será removido se ainda tiver membros.
+.PP
+A opção \fB\-\-system\fP adiciona a mesma funcionalidade para usuários,
+respectivamente.
+
+.SS "Remover um usuário de um grupo específico"
+Se chamado com dois argumentos que não são opções, \fBdeluser\fP removerá um
+usuário de um grupo específico.
+
+.SH OPÇÕES
+Os diferentes modos do \fBdeluser\fP permitem opções diferentes. Se nenhum modo
+válido for listado para uma opção, ela será aceita em todos os modos.
+.PP
+Versões curtas para certas opções podem existir por razões históricas. Elas
+continuarão com suporte, mas serão removidas da documentação. Os usuários
+são aconselhados a migrar para a versão longa das opções.
+.TP 
+\fB\-\-backup\fP
+Faz backup de todos os arquivos contidos no home do usuário e no conjunto de
+arquivos de e\-mail para um arquivo chamado \fInome\-de\-usuário.tar.bz2\fP ou
+\fInome\-de\-usuário.tar.gz\fP. Modos válidos: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-backup\-suffix \fPstr
+Seleciona o algoritmo de compactação para um backup do diretório home. Pode
+ser definido para qualquer sufixo reconhecido por \fBtar \-\-auto\-compress\fP. O
+padrão é \fI.gz\fP. Modos válidos: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-backup\-to \fP\fIdir\fP
+Não coloca os arquivos de backup no diretório atual, mas em \fIdir\fP. Isso
+também define implicitamente \fB\-\-backup\fP (padrão para o diretório de
+trabalho atual). Modos válidos: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-conf \fP\fIarquivo\fP
+Usa \fIarquivo\fP em vez dos arquivos padrão \fI/etc/deluser.conf\fP e
+\fI/etc/adduser.conf\fP. Múltiplas opções \-\-conf podem ser dadas.
+.TP 
+\fB\-\-debug\fP
+Sinônimo para \fB\-\-stdoutmsglevel=debug.\fP Obsoleto.
+.TP 
+\fB\-\-group\fP
+Remove um grupo. Esta é a ação padrão se o programa for chamado como
+\fIdelgroup\fP. Modo válido: \fBdeluser\fP.
+.TP 
+\fB\-\-help\fP
+Mostra informações de uso.
+.TP 
+\fB\-\-only\-if\-empty\fP
+Remove apenas se nenhum membro for deixado. Modos válidos: \fBdeluser \-\-group\fP, \fBdelgroup\fP.
+.TP 
+\fB\-\-quiet\fP
+Sinônimo para \fB\-\-stdoutmsglevel=warn.\fP Obsoleto.
+.TP 
+\fB\-\-remove\-all\-files\fP
+Remove todos os arquivos do sistema pertencentes a este usuário. Nota:
+\-\-remove\-home não tem mais efeito. Se \fB\-\-backup\fP for especificado, os
+arquivos serão excluídos após a execução do backup. Modos válidos:
+\fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-remove\-home\fP
+Remove o diretório home do usuário e seu conjunto de arquivos de e\-mail. Se
+\fB\-\-backup\fP for especificado, os arquivos serão excluídos após a execução do
+backup. Modos válidos: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-system\fP
+Exclue apenas se o usuário/grupo for um usuário/grupo de sistema. Se o
+usuário não existir, nenhum valor de erro será retornado. Modos válidos:
+\fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-verbose\fP
+Sinônimo para \fB\-\-stdoutmsglevel=info.\fP Obsoleto.
+.TP 
+\fB\-\-stdoutmsglevel\fP\fI prio\fP
+.TQ
+\fB\-\-stderrmsglevel\fP\fI prio\fP
+.TQ
+\fB\-\-logmsglevel\fP\fI prio\fP
+Prioridade mínima para mensagens registradas no syslog/journal e no console,
+respectivamente. Os valores são \fItrace\fP, \fIdebug\fP, \fIinfo\fP, \fIwarn\fP, \fIerr\fP
+e \fIfatal\fP. Mensagens com a prioridade definida aqui ou superior são
+mostradas no respectivo meio. Mensagens mostradas no stderr não são
+repetidas no stdout. Isso permite que o administrador local controle o
+falatório do \fBadduser\fP no console e no log de forma independente, mantendo
+informações provavelmente confusas para si mesmo, mas ainda deixando
+informações úteis no log.
+.TP 
+\fB\-\-version\fP
+Mostra a versão e informações de copyright.
+
+.SH LOGGINGâ²
+
+\fBdeluser\fP usa registro extensivo e configurável para adaptar sua
+verbosidade às necessidades e desejos do administrador do sistema.
+
+Isso funciona de forma semelhante a \fBadduser\fP. Consulte \fBadduser\fP(8) para
+todos os detalhes.
+
+.SH "VALORES DE SAÍDA"
+
+Os valores de saída documentados em adduser(8) também se aplicam a
+\fBdeluser\fP.
+
+.SH SEGURANÇA
+\fBdeluser\fP precisa de privilégios de root e oferece, por meio da opção de
+linha de comando \fB\-\-conf\fP, o uso de diferentes arquivos de
+configuração. Não use \fBsudo\fP(8) ou ferramentas semelhantes para dar
+privilégios parciais a \fBdeluser\fP com parâmetros de linha de comando
+restritos. Isso é fácil de contornar e pode permitir que os usuários
+obtenham privilégios que não deveriam ter. Se você quiser isso, considere
+escrever seu próprio script envoltório e dar privilégios para executar esse
+script.
+
+.SH ARQUIVOS
+\fI/etc/deluser.conf\fP Arquivo de configuração padrão para \fBdeluser\fP(8) e
+\fBdelgroup\fP(8)
+.TP 
+\fI/usr/local/sbin/deluser.local\fP
+Complementos personalizados opcionais, consulte \fBdeluser.local\fP(8)
+.
+
+.SH "CONSULTE TAMBÉM"
+\fBadduser\fP(8), \fBdeluser.conf\fP(5), \fBdeluser.local.conf\fP(8), \fBgroupdel\fP(8),
+\fBuserdel\fP(8)
+.SH "TRADUÇÃO"
+Philipe Gaspar (philipegaspar@terra.com.br), 2003.
+Felipe Augusto van de Wiel (faw) <felipe@cathedrallabs.org>, 2005-2006.
+Paulo Henrique de Lima Santana (phls) <phls@debian.org>, 2025.

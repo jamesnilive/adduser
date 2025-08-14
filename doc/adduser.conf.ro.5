@@ -1,0 +1,224 @@
+.\" Copyright: 1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2008 Stephen Gran <sgran@debian.org>
+.\"            2007 Jörg Hoh <joerg@joerghoh.de>
+.\"            2016 Afif Elghraoui <afif@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public License version 2
+.\" or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH ADDUSER.CONF 5 "" "Debian GNU/Linux" 
+.SH NUME
+/etc/adduser.conf \- configuration file for \fBadduser\fP(8)  and \fBaddgroup\fP(8)
+.SH DESCRIPTION
+Fișierul \fI/etc/adduser.conf\fP conține valori implicite pentru programele
+\fBadduser\fP(8), \fBaddgroup\fP(8), \fBdeluser\fP(8) și \fBdelgroup\fP(8).  Fiecare
+linie conține o singură pereche de valori în forma \fIopțiune\fP = \fIvaloare\fP.
+Sunt permise ghilimele duble sau simple în jurul valorii, precum și spații
+albe în jurul semnului egal.  Liniile de comentariu trebuie să aibă un
+simbol hash (#) în prima coloană.
+.PP
+Opțiunile de configurare valide sunt:
+.TP 
+\fBSTDERRMSGLEVEL ,  STDOUTMSGLEVEL , și  LOGMSGLEVEL\fP
+Prioritatea minimă pentru mesajele înregistrate la syslog/journal și,
+respectiv, la consolă. Consultați \fBLOGGING\fP în adduser(8). Valoarea
+implicită este \fIwarn\fP pentru STDOUTMSGLEVEL și STDERRMSGLEVEL și \fIinfo\fP
+pentru LOGMSGLEVEL.
+.TP 
+\fBADD_EXTRA_GROUPS\fP
+Definirea acestei opțiuni la o valoare diferită de 0 va determina \fBadduser\fP
+să adauge utilizatorii non\-sistem nou creați la lista de grupuri definite de
+\fBEXTRA_GROUPS\fP (mai jos). Valoarea implicită este \fI0\fP.
+.TP 
+\fBDIR_MODE\fP
+Modul de permisiuni pentru directoarele personale ale utilizatorilor
+non\-sistem care sunt create de \fBadduser\fP(8). Valoarea implicită este
+\fI0700\fP. Rețineți că există configurații potențiale (cum ar fi serviciile
+web ~/user, sau livrarea corespondenței la domiciliu) care vor necesita
+modificări ale valorii implicite. A se vedea și \fBSYS_DIR_MODE\fP.
+.TP 
+\fBDHOME\fP
+Directorul în care ar trebui create noile directoare personale. Valoarea
+implicită este \fI/home\fP.
+.TP 
+\fBDSHELL\fP
+Shell\-ul de conectare care trebuie utilizat pentru toți utilizatorii
+noi.Valoarea implicită este \fI/bin/bash\fP.
+.TP 
+\fBEXTRA_GROUPS\fP
+Aceasta este lista de grupuri, separate prin spații, la care vor fi adăugați
+noii utilizatori care nu fac parte din utilizatorii sistemului
+(non\-sistem).Valoarea implicită este \fIusers\fP.
+.TP 
+\fBFIRST_SYSTEM_GID  și LAST_SYSTEM_GID\fP
+specifică un interval inclusiv de GID\-uri din care GID\-urile pentru
+grupurile de sisteme pot fi alocate dinamic.Valoarea implicită este \fI100\fP \-
+\fI999\fP.
+.TP 
+\fBFIRST_GID  și  LAST_GID\fP
+specifică un interval inclusiv de GID\-uri din care GID\-urile pentru
+grupurile non\-sistem pot fi alocate dinamic.
+.TP 
+\fBFIRST_SYSTEM_UID  și  LAST_SYSTEM_UID\fP
+specifică un interval inclusiv de UID\-uri din care UID\-urile pentru
+utilizatorii sistemului pot fi alocate dinamic.Valoarea implicită este
+\fI100\fP \- \fI999\fP.  Rețineți că software\-ul de sistem, cum ar fi utilizatorii
+alocați de pachetul \fIbase\-passwd\fP, poate presupune că UID mai mici de 100
+sunt nealocate.
+.TP 
+\fBFIRST_UID  și  LAST_UID\fP
+specifică un interval inclusiv de UID\-uri din care pot fi alocate dinamic
+UID\-uri pentru utilizatorii care nu fac parte din utilizatorii sistemului
+(non\-sistem). Valoarea implicită este \fI1000\fP \- \fI59999\fP.
+.TP 
+\fBGID_POOL\fP
+Vedeți \fBUID_POOL\fP.
+.TP 
+\fBGROUPHOMES\fP
+Dacă această opțiune este stabilită la \fIyes\fP, directoarele personale vor fi
+create ca \fI/home/nume\-grup/utilizator\fP. Valoarea implicită este
+\fIno\fP. Această opțiune este \fBdepreciată\fP și va fi eliminată.
+.TP 
+\fBLAST_SYSTEM_GID\fP
+.TQ
+\fBLAST_GID\fP
+.TQ
+\fBLAST_SYSTEM_UID\fP
+.TQ
+\fBLAST_UID\fP
+A se vedea variantele \fBFIRST_\fP ale opțiunii.
+.TP 
+\fBLETTERHOMES\fP
+Dacă această opțiune este stabilită la \fIyes\fP, atunci directoarele personale
+create vor avea inserat un director suplimentar, care este prima literă a
+numelui de autentificare. De exemplu: \fI/home/u/utilizator\fP. Valoarea
+implicită este \fIno\fP. Această opțiune este \fBdepreciată\fP și va fi eliminată.
+.TP 
+\fBNAME_REGEX\fP
+Numele utilizatorilor și grupurilor „non\-sistem” sunt verificate în raport
+cu această expresie regulată. Dacă numele nu se potrivește cu această
+expresie regulată, crearea de utilizatori și grupuri în \fBadduser\fP(8) este
+refuzată, cu excepția cazului în care este specificată opțiunea
+\fB\-\-allow\-bad\-names\fP. Dacă \fB\-\-allow\-bad\-names\fP este specificată, sunt
+efectuate verificări mai simple. Valoarea implicită este cea mai
+conservatoare \fI^[a\-zA\-Z][a\-zA\-Z0\-9_\-]*\e$?$\fP.. Pentru mai multe informații,
+consultați opțiunea \fBSYS_NAME_REGXEX\fP și secțiunea \fBNUME VALIDE\fP, de mai
+jos.
+.TP 
+\fBQUOTAUSER\fP
+Dacă este definită la o valoare nevidă, cotele noilor utilizatori vor fi
+copiate de la acel utilizator utilizând \fIedquota \-p QUOTAUSER utilizator\-nou\fP. Valoarea implicită este \fIșirul gol\fP.
+.TP 
+\fBRESERVE_UID_POOL  și  RESERVE_GID_POOL\fP
+Controlează dacă valorile UID și GID care sunt listate în fișierele de bază
+de date UID și GID „pool” sunt cu adevărat rezervate.. Consultați bazele de
+date „POOL” UID și GID în secțiunea NOTE. Valoarea implicită este \fIyes\fP.
+.TP 
+\fBSETGID_HOME\fP
+Dacă această opțiune este stabilită la \fIyes\fP, atunci directoarele personale
+pentru utilizatorii cu propriul grup (\fBUSERGROUPS\fP = yes) vor avea bitul
+„set\-group\-ID” activat. Rețineți că această caracteristică este
+\fBdepreciată\fP și va fi eliminată într\-o versiune viitoare a \fBadduser\fP(8).
+Vă rugăm să utilizați în schimb \fBDIR_MODE\fP. Valoarea implicită este \fIno\fP.
+.TP 
+\fBSKEL\fP
+Directorul din care vor fi copiate fișierele de configurare șablon (schelet)
+ale utilizatorului. Valoarea implicită este \fI/etc/skel\fP.
+.TP 
+\fBSKEL_IGNORE_REGEX\fP
+La popularea directorului personal nou creat al unui utilizator care nu face
+parte din utilizatorii sistemului (non\-sistem), fișierele din SKEL care
+corespund acestei expresii regulate nu sunt copiate. Valoarea implicită este
+\fI(.(dpkg|ucf)\-(old|new|dist)$)\fP, expresia regulată care se potrivește
+fișierelor care nu au fost încă fuzionate din fișierele de configurare..
+.TP 
+\fBSYS_DIR_MODE\fP
+Modul de permisiuni pentru directoarele personale ale utilizatorilor
+sistemului care sunt create de \fBadduser\fP(8). Valoarea implicită este
+\fI0755\fP. Rețineți că schimbarea permisiunilor implicite pentru utilizatorii
+sistemului poate determina comportarea nesigură a unor pachete, dacă
+programul se bazează pe configurația implicită. A se vedea și \fBDIR_MODE\fP.
+.TP 
+\fBSYS_NAME_REGEX\fP
+Numele utilizatorilor și grupurilor sistemului sunt verificate în raport cu
+această expresie regulată. Dacă numele nu se potrivește cu această expresie,
+crearea de utilizatori și grupuri de sistem în adduser este refuzată, cu
+excepția cazului în care este specificată opțiunea
+\fB\-\-allow\-bad\-names\fP. Dacă \fB\-\-allow\-bad\-names\fP este specificată, sunt
+efectuate verificări mai simple. Valoarea implicită este cea mai
+conservatoare \fI^[a\-zA\-Z_][a\-zA\-Z0\-9_\-]*\e$?$\fP. Consultați opțiunea
+\fBNAME_REGEX\fP, mai sus, și secțiunea \fBNUME VALIDE\fP, mai jos, pentru mai
+multe informații.
+.TP 
+\fBUID_POOL  și  GID_POOL\fP
+specifică un fișier sau un director care conține fișiere de bază de date UID
+și GID. Consultați bazele de date „POOL” UID și GID în secțiunea
+NOTE. Ambele au valoarea implicită \fIempty\fP.
+.TP 
+\fBUSERGROUPS\fP
+Specifică dacă fiecare utilizator non\-sistem creat va primi propriul său
+grup. Valoarea implicită este \fIyes\fP.
+.TP 
+\fBUSERS_GID  și  USERS_GROUP\fP
+Definește numele grupului sau GID\-ul grupului în care sunt plasați toți
+utilizatorii nou creați care nu fac parte din utilizatorii sistemului
+(non\-sistem). Dacă \fBUSERGROUPS\fP este stabilită la \fIyes,\fP grupul va fi
+adăugat ca un grup suplimentar; dacă \fBUSERGROUPS\fP este stabilită la \fIno,\fP,
+acesta va fi grupul primar. Dacă nu doriți ca toți utilizatorii să fie
+într\-un singur grup, definiți \fBUSERGROUPS\fP=\fIyes\fP, lăsați \fBUSERS_GROUP\fP
+gol și definiți \fBUSERS_GID\fP la „\-1”. \fBUSERS_GROUP\fP are ca valoare
+implicită \fIusers\fP, care are GID 100 pe toate sistemele Debian deoarece este
+definit static de pachetul \fIbase\-passwd\fP. Este o eroare de configurare să
+definiți ambele variabile, chiar dacă valorile sunt consecvente.
+.SH NOTE
+.SS "BAZELE DE DATE „POOL” UID ȘI GID"
+Unele instalări doresc ca un cont non\-sistem să primească proprietăți
+preconfigurate atunci când este generat. De obicei, administratorul local
+dorește să se asigure că, chiar și fără a utiliza un serviciu de directoare,
+un cont sau un grup cu un anumit nume are același UID/GID numeric pe toate
+sistemele pe care există.
+.PP
+Pentru a activa această caracteristică, definiți variabilele de configurare
+\fBUID_POOL\fP (pentru conturile de utilizator) și/sau \fBGID_POOL\fP (pentru
+grupuri) în \fI/etc/adduser.conf\fP și instalați fișierele respective în
+locurile configurate. Valoarea este fie un fișier, fie un director. În
+ultimul caz, sunt luate în considerare toate fișierele cu numele \fI*.conf\fP
+din directorul respectiv.
+.PP
+Formatul fișierului este similar cu \fI/etc/passwd\fP: linii de text, câmpuri
+separate prin două puncte. Valorile sunt nume utilizator/nume grup
+(obligatoriu), UID/GID (obligatoriu), câmp comentariu (opțional, util doar
+pentru ID\-uri utilizator), director personal (idem), shell (idem).
+.PP
+Este posibil să se utilizeze același fișier/director pentru \fBUID_POOL\fP și
+\fBGID_POOL\fP.
+.PP
+Dacă este creat un cont/grup, \fBadduser\fP(8) caută în toate fișierele bază de
+date „pool” UID/GID o linie care să corespundă numelui contului nou creat și
+utilizează datele găsite acolo pentru a inițializa noul cont în loc să
+utilizeze valorile implicite. Parametrii pot fi suprascriși din linia de
+comandă.
+.PP
+În configurația implicită, valorile UID și GID listate în baza de date vor
+fi rezervate și, prin urmare, nu vor fi utilizate de procesele normale de
+selecție UID și GID. Aceasta este de obicei ceea ce doriți. Cu opțiunile de
+configurare \fBRESERVE_UID_POOL\fP și \fBRESERVE_GID_POOL\fP, puteți dezactiva
+acest comportament dacă doriți ca UID\-urile și GID\-urile rezervate să fie
+utilizate de conturile obișnuite. Acest lucru ar putea provoca conflicte și
+ar putea face ca UID\-urile și GID\-urile din baza de date să fie utilizate de
+conturi care nu sunt în baza de date.
+
+.SH FIȘIERE
+\fI/etc/adduser.conf\fP
+.SH "CONSULTAȚI ȘI"
+\fBdeluser.conf\fP(5), \fBaddgroup\fP(8), \fBadduser\fP(8), \fBdelgroup\fP(8),
+\fBdeluser\fP(8)

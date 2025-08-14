@@ -1,0 +1,83 @@
+.\" Copyright: 1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2007 Jörg Hoh <joerg@joerghoh.de>
+.\"            2011 Stephen Gran <sgran@debian.org>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021 Jason Franklin <jason@oneway.dev>
+.\"            2022 Matt Barry <matt@hazelmollusk.org>
+.\"
+.\" This is free software; see the GNU General Public Lisence version 2
+.\" or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH DELUSER.CONF 5 "" "Debian GNU/Linux" 
+.SH BEZEICHNUNG
+/etc/deluser.conf \- Konfigurationsdatei für \fBdeluser\fP(8) und \fBdelgroup\fP(8)
+.SH BESCHREIBUNG
+Die Datei \fI/etc/deluser.conf\fP enthält Vorgabewerte für die Programme
+\fBdeluser\fP(8) und \fBdelgroup\fP(8). Jede Zeile enthält ein einzelnes Wertepaar
+in der Form \fIOption\fP = \fIWert\fP. Die Werte können von einfachen oder
+doppelten Anführungszeichen, das Gleichheitszeichen von Leerraum
+eingeschlossen werden. Kommentarzeilen müssen mit dem Raute\-Zeichen (#)
+beginnen.
+.PP
+\fBdeluser\fP(8) und \fBdelgroup\fP(8) werten auch \fI/etc/adduser.conf\fP aus, siehe
+\fBadduser.conf\fP(5). Einstellungen in \fIdeluser.conf\fP können Einstellungen
+aus \fIadduser.conf\fP überschreiben.
+.PP
+Die gültigen Konfigurationsoptionen sind:
+.TP 
+\fBBACKUP\fP
+Wenn eine der Optionen \fBREMOVE_HOME\fP oder \fBREMOVE_ALL_FILES\fP aktiviert
+ist, wird von allen Dateien eine Sicherungskopie angelegt, bevor sie
+entfernt werden. Die Backup\-Datei trägt standardmäßig den Namen
+\fIBenutzername.tar(.gz|.bz2)\fP und wird in dem durch \fBBACKUP_TO\fP
+vorgegebenen Verzeichnis gespeichert. Als Kompressionsmethode wird die beste
+verfügbare gewählt. Mögliche Werte sind 0 oder 1. Standardmäßig \fI0\fP.
+.TP 
+\fBBACKUP_SUFFIX\fP
+Wählt den Komprimierungsalgorithmus für die Sicherungskopie des
+Home\-Verzeichnisses aus. Kann auf jeden von \fBtar \-\-auto\-compress\fP erkannten
+Algorithmus gesetzt werden. Standardmäßig \fI.gz\fP.
+.TP 
+\fBBACKUP_TO\fP
+Wenn \fBBACKUP\fP aktiviert ist, legt \fBBACKUP_TO\fP das Verzeichnis fest, in das
+die Sicherungsdatei geschrieben wird. Der Standardwert hierfür ist das
+aktuelle Verzeichnis.
+.TP 
+\fBEXCLUDE_FSTYPES\fP
+Dieser reguläre Ausdruck beschreibt alle Dateisystemtypen, die nicht
+durchsucht werden, wenn Dateien eines Benutzers gelöscht werden sollen. Der
+Standardwert ist »(proc|sysfs|usbfs|devtmpfs|devpts|afs)«.
+.TP 
+\fBNO_DEL_PATHS\fP
+Eine Liste von regulären Ausdrücken, getrennt durch Leerzeichen. Alle zu
+löschenden Dateien im Home\-Verzeichnis oder dem Benutzer gehörende Dateien
+an anderen Orten werden mit jedem der regulären Ausdrücke verglichen. Wenn
+eine Übereinstimmung erkannt wird, wird die Datei nicht
+gelöscht. Standardmäßig wird eine Liste der System\-Verzeichnisse vorgegeben,
+sodass nur \fI/home\fP übrig bleibt. Daher werden nur Dateien unterhalb von
+\fI/home\fP, die zu dem bestimmten Benutzer gehören, gelöscht werden.
+.TP 
+\fBONLY_IF_EMPTY\fP
+Eine Gruppe wird nur gelöscht, wenn diese Gruppe keine Mitglieder hat. Der
+Standardwert ist 0.
+.TP 
+\fBREMOVE_ALL_FILES\fP
+Löscht im System alle Dateien des Benutzers, der entfernt wird. Wenn diese
+Option aktiviert ist, hat \fBREMOVE_HOME\fP keine Auswirkung. Mögliche Werte
+sind 0 oder 1. Standardmäßig \fI0\fP.
+.TP 
+\fBREMOVE_HOME\fP
+Löscht das Home\-Verzeichnis und den E\-Mail\-Puffer des zu entfernenden
+Benutzers. Mögliche Werte sind 0 (nicht löschen) oder 1
+(löschen). Standardmäßig \fI0\fP.
+
+.SH DATEIEN
+\fI/etc/deluser.conf\fP
+.SH "SIEHE AUCH"
+\fBadduser.conf\fP(5), \fBdelgroup\fP(8), \fBdeluser\fP(8)

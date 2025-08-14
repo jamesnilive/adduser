@@ -1,0 +1,50 @@
+.\" Copyright 2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"
+.\" This is free software; see the GNU General Public License version
+.\" 2 or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH ADDUSER 8 "" "Debian GNU/Linux" 
+.SH NAAM
+adduser.local, deluser.local \- uitbreiding (hook) voor lokale acties in
+adduser en deluser
+.SH SYNOPSIS
+.SY adduser.local
+.OP gebruikersnaam
+.OP uid
+.OP gid
+.OP "persoonlijke map"
+.SY deluser.local
+.OP gebruikersnaam
+.OP uid
+.OP gid
+.OP "persoonlijke map"
+.YS
+.SH BESCHRIJVING
+\fBadduser.local\fP en \fBdeluser.local\fP kunnen door de lokale beheerder in
+\fI/usr/local/sbin\fP worden geplaatst en zullen respectievelijk door
+\fBadduser\fP en \fBdeluser\fP aangeroepen worden om lokaal relevante installatie\-
+en opruimacties uit te voeren.
+.PP
+De uitbreidingen (hooks) worden aangeroepen terwijl de vergrendeling van
+adduser/deluser actief is. Ze mogen dus niet zelf adduser/deluser terug
+aanroepen.
+.SH "TERUGGEZONDEN WAARDE"
+Door de uitbreidingen (hooks) teruggezonden waarden worden genegeerd.
+
+.SH OMGEVING
+\fBVERBOSE\fP
+.IP 0
+als \-\-quiet werd opgegeven
+.IP 1
+als noch \-\-quiet noch \-\-debug werd opgegeven
+.IP 2
+als \-\-debug werd opgegeven
+
+.SH "ZIE OOK"
+\fBadduser.conf\fP(5), \fBdeluser.conf\fP(5), \fBadduser\fP(8), \fBdeluser\fP(8),
+\fBgroupadd\fP(8), \fBuseradd\fP(8), \fBusermod\fP(8), Debian Beleidslijnen 9.2.2.
+

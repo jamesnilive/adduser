@@ -1,0 +1,281 @@
+.\" Copyright: 1994 Ian A. Murdock <imurdock@debian.org>
+.\"            1995 Ted Hajek <tedhajek@boombox.micro.umn.edu>
+.\"            1997-1999 Guy Maor
+.\"            2000-2003 Roland Bauerschmidt <rb@debian.org>
+.\"            2004-2025 Marc Haber <mh+debian-packages@zugschlus.de>
+.\"            2006-2009 Jörg Hoh <joerg@joerghoh.de>
+.\"            2011 Justin B Rye <jbr@edlug.org.uk>
+.\"            2016 Helge Kreutzmann <debian@helgefjell.de>
+.\"            2021-2022 Jason Franklin <jason@oneway.dev>
+.\"
+.\" This is free software; see the GNU General Public License version
+.\" 2 or later for copying conditions.  There is NO warranty.
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH DELUSER 8 "" "Debian GNU/Linux" 
+.SH NAAM
+deluser, delgroup \- een gebruiker of groep van het systeem verwijderen
+.SH SYNOPSIS
+.SY deluser
+.OP \-\-backup
+.OP \-\-backup\-suffix tknrks
+.OP \-\-backup\-to map
+.OP \-\-conf bestand
+.OP \-\-debug
+.OP \-\-remove\-all\-files
+.OP \-\-remove\-home
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgebruiker\fP
+.YS
+
+.SY deluser
+.OP \-\-system
+.OP \-\-backup
+.OP \-\-backup\-suffix tknrks
+.OP \-\-backup\-to map
+.OP \-\-conf bestand
+.OP \-\-debug
+.OP \-\-remove\-all\-files
+.OP \-\-remove\-home
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgebruiker\fP
+.YS
+
+.SY deluser
+\fB\-\-group\fP
+.OP \-\-conf bestand
+.OP \-\-debug
+.OP \-\-only\-if\-empty
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgroep\fP
+.YS
+
+.SY delgroup
+.OP \-\-system
+.OP \-\-conf bestand
+.OP \-\-debug
+.OP \-\-only\-if\-empty
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgroep\fP
+.YS
+
+.SY deluser
+.OP \-\-conf bestand
+.OP \-\-debug
+.OP \-\-quiet
+.OP \-\-verbose
+.OP \-\-stdoutmsglevel prio
+.OP \-\-stderrmsglevel prio
+.OP \-\-logmsglevel prio
+\fBgebruiker\fP \fBgroep\fP
+.YS
+
+.SY deluser
+\fB\-\-help\fP
+.YS
+.SY deluser
+\fB\-\-version\fP
+.YS
+.SH BESCHRIJVING
+\fBdeluser\fP en \fBdelgroup\fP verwijderen gebruikers en groepen van het systeem
+volgens de commandoregelopties en de configuratie\-informatie in
+\fI/etc/deluser.conf\fP en \fI/etc/adduser.conf\fP.
+.PP
+Het zijn meer Debian\-specifieke frontends voor de programma's \fBuserdel\fP en
+\fBgroupdel\fP, die minder afhankelijk zijn van de distributie. \fBdeluser\fP en
+\fBdelgroup\fP hebben als optie het verwijderen van de persoonlijke map of
+zelfs van alle bestanden op het systeem die eigendom zijn van de te
+verwijderen gebruiker, ze kunnen een aangepast script uitvoeren en hebben
+nog andere mogelijkheden.
+.PP
+Raadpleeg het onderdeel OPTIES voor een volledige lijst van en uitleg bij
+alle opties.
+.PP
+\fBdeluser\fP en \fBdelgroup\fP kunnen in drie modi uitgevoerd worden:
+
+.SS "Een gebruiker verwijderen"
+Indien het aangeroepen wordt met één niet\-optieargument en zonder de optie
+\fB\-\-group\fP, zal \fBdeluser\fP een niet\-systeemgebruiker verwijderen.
+.PP
+Standaard zal \fBdeluser\fP de gebruiker verwijderen zonder de persoonlijke
+map, de map met e\-mail of andere bestanden op het systeem die eigendom zijn
+van de gebruiker, te verwijderen. Het verwijderen van de persoonlijke map en
+de map met e\-mail kan worden bereikt met de optie \fB\-\-remove\-home\fP.
+.PP
+De optie \fB\-\-remove\-all\-files\fP verwijdert alle bestanden op het systeem die
+eigendom zijn van de gebruiker. Merk op dat als u beide opties activeert,
+\fB\-\-remove\-home\fP geen extra effect zal hebben, omdat alle bestanden,
+inclusief de persoonlijke map en de map met e\-mail, al gedekt zijn door de
+optie \fB\-\-remove\-all\-files\fP.
+.PP
+Als u een back\-up wilt maken van alle bestanden voordat u ze verwijdert,
+kunt u de optie \fB\-\-backup\fP activeren, die een bestand
+\fIgebruikersnaam.tar(.gz|.bz2)\fP zal aanmaken in de map die is opgegeven door
+de optie \fB\-\-backup\-to\fP.
+.PP
+Standaard wordt het back\-uparchief gecomprimeerd met \fBgzip\fP(1). Om dit te
+wijzigen, kan de optie \fB\-\-backup\-suffix\fP worden ingesteld op elk
+achtervoegsel dat wordt ondersteund door \fBtar \-\-auto\-compress\fP.
+.PP
+\fBdeluser\fP zal weigeren het account van root, de systeembeheerder, te
+verwijderen.
+.PP
+Als de optie \fB\- systeem\fP aan de commandoregel wordt opgegeven, wordt de
+verwijderingsoperatie alleen uitgevoerd als de gebruiker een
+systeemgebruiker is. Dit voorkomt het per ongeluk verwijderen van
+niet\-systeemgebruikers. Bovendien wordt er geen foutwaarde teruggegeven als
+de gebruiker niet bestaat. Scripts van pakketbeheerders van Debian kunnen
+gebruikmaken van deze vlag om systeemgebruikers of \-groepen te verwijderen,
+terwijl ze het geval waarin de verwijdering al heeft plaatsgevonden negeren.
+
+.SS "Een groep verwijderen"
+Als \fBdeluser\fP wordt aangeroepen met de optie \fB\-\-group\fP, of als \fBdelgroup\fP
+wordt aangeroepen, wordt een groep verwijderd. De primaire groep van een
+bestaande gebruiker kan niet worden verwijderd. Als de optie
+\fB\-\-only\-if\-empty\fP wordt opgegeven, wordt de groep niet verwijderd als er
+nog leden in zitten.
+.PP
+De optie \fB\-\-system\fP voegt dezelfde functionaliteit toe als de respectieve
+functies bij gebruikers.
+
+.SS "Een gebruiker uit een specifieke groep verwijderen"
+Als \fBdeluser\fP wordt aangeroepen met twee niet\-optie argumenten, zal het een
+gebruiker verwijderen uit een specifieke groep.
+
+.SH OPTIES
+In verschillende modi van \fBdeluser\fP zijn verschillende opties
+toegestaan. Als voor een optie geen geldige modi worden vermeld, wordt deze
+in alle modi aanvaard.
+.PP
+Voor bepaalde opties kunnen om historische redenen korte versies bestaan. Ze
+blijven ondersteund worden, maar worden verwijderd uit de
+documentatie. Gebruikers wordt aangeraden over te stappen op de lange versie
+van de opties.
+.TP 
+\fB\-\-backup\fP
+Alle bestanden in de persoonlijke map van de gebruiker en de map met e\-mail
+back\-uppen naar een bestand met de naam \fIgebruikersnaam.tar.bz2\fP of
+\fIgebruikersnaam.tar.gz\fP. Geldige modi: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-backup\-suffix \fPtekst
+Het compressiealgoritme selecteren voor een back\-up van de persoonlijke
+map. Kan worden ingesteld op elk achtervoegsel dat wordt herkend door \fBtar \-\-auto\-compress\fP. Staat standaard ingesteld op \fI.gz\fP. Geldige modi:
+\fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-backup\-to \fP\fImap\fP
+De back\-upbestanden niet in de huidige map maar in \fImap\fP plaatsen. Dit
+stelt impliciet ook \fB\-\-backup\fP in. Staat
+standaard ingesteld op de huidige werkmap. Geldige modi: \fBdeluser\fP,
+\fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-conf \fP\fIbestand\fP
+\fIBestand\fP gebruiken in plaats van de standaardbestanden
+\fI/etc/deluser.conf\fP en \fI/etc/adduser.conf\fP. Er kunnen meerdere \-\-conf
+opties gegeven worden.
+.TP 
+\fB\-\-debug\fP
+Synoniem voor \fB\-\-stdoutmsglevel=debug.\fP Verouderd.
+.TP 
+\fB\-\-group\fP
+Een groep verwijderen. Dit is de standaardactie als het programma wordt
+aangeroepen als \fIdelgroup\fP. Geldige modus: \fBdeluser\fP.
+.TP 
+\fB\-\-help\fP
+Korte instructies weergeven.
+.TP 
+\fB\-\-only\-if\-empty\fP
+Alleen verwijderen als er geen leden meer zijn. Geldige modi: \fBdeluser \-\-group\fP, \fBdelgroup\fP.
+.TP 
+\fB\-\-quiet\fP
+Synoniem voor \fB\-\-stdoutmsglevel=warn.\fP Verouderd.
+.TP 
+\fB\-\-remove\-all\-files\fP
+Alle bestanden die eigendom zijn van deze gebruiker, van het systeem
+verwijderen. Opmerking: \-\-remove\-home heeft geen effect meer. Als
+\fB\-\-backup\fP is opgegeven, worden de bestanden verwijderd nadat de back\-up is
+uitgevoerd. Geldige modi: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-remove\-home\fP
+De persoonlijke map en de map met e\-mail van de gebruiker verwijderen. Als
+\fB\-\-backup\fP is opgegeven, worden de bestanden verwijderd nadat de back\-up is
+uitgevoerd. Geldige modi: \fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-system\fP
+Alleen verwijderen als de gebruiker/groep een systeemgebruiker/groep is. Als
+de gebruiker niet bestaat, wordt geen foutwaarde teruggegeven. Geldige modi:
+\fBdeluser\fP, \fBdeluser \-\-system\fP.
+.TP 
+\fB\-\-verbose\fP
+Synoniem voor \fB\-\-stdoutmsglevel=info.\fP Verouderd.
+.TP 
+\fB\-\-stdoutmsglevel\fP\fI prio\fP
+.TQ
+\fB\-\-stderrmsglevel\fP\fI prio\fP
+.TQ
+\fB\-\-logmsglevel\fP\fI prio\fP
+Minimale prioriteit voor berichten die respectievelijk naar syslog/journal
+en de console worden gelogd. Waarden zijn \fItrace\fP, \fIdebug\fP, \fIinfo\fP,
+\fIwarn\fP, \fIerr\fP en \fIfatal\fP. Berichten met de hier ingestelde prioriteit of
+hoger worden naar het betreffende medium geprint. Berichten die naar stderr
+worden geprint, worden niet herhaald op stdout. Hierdoor kan de lokale
+beheerder de breedsprakigheid van \fBadduser\fP op de console en in het
+logbestand onafhankelijk beheren, waardoor deze mogelijk verwarrende
+informatie voor zichzelf kan houden en nuttige informatie in de log blijft
+staan.
+.TP 
+\fB\-\-version\fP
+Versie\- en copyrightinformatie weergeven.
+
+.SH LOGGINGâ²
+
+\fBdeluser\fP maakt gebruik van uitgebreid en configureerbaar loggen om de
+gedetailleerdheid ervan te kunnen aanpassen aan de behoeften van de
+systeembeheerder.
+
+Dit werkt vergelijkbaar met \fBadduser\fP. Zie \fBadduser\fP(8) voor alle details.
+
+.SH AFSLUITWAARDEN
+
+De afsluitwaarden die in adduser(8) worden gedocumenteerd, zijn ook van
+toepassing op \fBdeluser\fP.
+
+.SH VEILIGHEID
+\fBdeluser\fP heeft root\-privileges nodig en biedt via de opdrachtregeloptie
+\fB\-\-conf\fP de mogelijkheid om verschillende configuratiebestanden te
+gebruiken. Gebruik geen \fBsudo\fP(8) of soortgelijke hulpmiddelen om
+gedeeltelijke rechten te geven aan \fBdeluser\fP met beperkte
+commandoregelparameters. Dit is gemakkelijk te omzeilen en kan gebruikers in
+staat stellen privileges te verwerven die ze niet zouden moeten hebben. Als
+u dit wilt, overweeg dan om uw eigen wrapperscript te schrijven en
+privileges te geven om dat script uit te voeren.
+
+.SH BESTANDEN
+\fI/etc/deluser.conf\fP Standaard configuratiebestand voor \fBdeluser\fP(8) en
+\fBdelgroup\fP(8)
+.TP 
+\fI/usr/local/sbin/deluser.local\fP
+Optionele aangepaste uitbreidingen, zie \fBdeluser.local\fP(8)
+.
+
+.SH "ZIE OOK"
+\fBadduser\fP(8), \fBdeluser.conf\fP(5), \fBdeluser.local.conf\fP(8), \fBgroupdel\fP(8),
+\fBuserdel\fP(8)
