@@ -1,7 +1,7 @@
 Source: adduser
 Section: admin
 Priority: important
-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Maintainer: Lei Ni <james_ni@live.cn>
 XSBC-Original-Maintainer: Debian Adduser Developers <adduser@packages.debian.org>
 Uploaders: Marc Haber <mh+debian-packages@zugschlus.de>
 Standards-Version: 4.7.2

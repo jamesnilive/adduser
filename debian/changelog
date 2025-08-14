@@ -1,3 +1,38 @@
+adduser (3.159) noble; urgency=medium
+  * homework
+
+ -- Lei Ni <james_ni@live.cn>  Fri, 14 Aug 2025 12:19:31 +0800
+
+
+adduser (3.158) questing; urgency=medium
+  * homework
+
+ -- Lei Ni <james_ni@live.cn>  Fri, 14 Aug 2025 12:19:31 +0800
+
+
+adduser (3.157ubuntu1) questing; urgency=medium
+  * homework
+
+ -- Lei Ni <james_ni@live.cn>  Fri, 14 Aug 2025 12:19:31 +0800
+
+
+adduser (3.156) experimental; urgency=low
+  * homework
+
+ -- Lei Ni <james_ni@live.cn>  Fri, 14 Aug 2025 12:19:31 +0800
+
+
+adduser (3.155) stable; urgency=low
+  * homework
+
+ -- Lei Ni <james_ni@live.cn>  Fri, 14 Aug 2025 12:19:31 +0800
+
+adduser (3.154) unstable; urgency=low
+  * homework
+
+adduser (3.153) unstable; urgency=low
+  * homework
+
 adduser (3.152ubuntu1) questing; urgency=medium
 
   * Merge with Debian unstable (LP: #2111568).
