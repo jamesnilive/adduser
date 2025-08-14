@@ -78,10 +78,6 @@ case $1 in
     ;;
 esac
 
-# testing purpose only, may be deleted if you like
-echo "this is a test from Lei Ni"
-
-
 set +eu
 
 #DEBHELPER#
